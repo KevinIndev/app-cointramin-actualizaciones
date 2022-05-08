@@ -1,0 +1,19 @@
+.nav-link{
+    color: #242424;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.nav-link h5 i {
+    margin-right: 5px;
+}
+ .active{
+    background-color: #007965;
+    color: white;
+    border-radius: 5px;  
+ }
+
+.nav-link:hover{
+    background-color: #798777;
+    color: white;
+    border-radius: 5px;
+}
