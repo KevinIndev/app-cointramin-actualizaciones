@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { UserService } from 'src/app/services/server/user.service';
 import {response_standars, map_message_service} from 'src/app/services/indev-standards';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
   }
   
   constructor(private _user_service: UserService,
-              private _message_service: MessageService) { }
+              private _message_service: MessageService,
+              private route: Router) { }
 
   ngOnInit(): void {
   }
@@ -30,7 +32,8 @@ export class LoginComponent implements OnInit {
     this._user_service.Login(this.login_params).subscribe({
       next: (response) => {
         if(response.status && response.status === response_standars.success){
-          console.log(response.token);
+          this._user_service.setToken(response.token);
+          this.route.navigate(['/master/']);
         } else {
           this._message_service.add(map_message_service(response.status as string,response.message as string));
         }

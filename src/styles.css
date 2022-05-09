@@ -25,5 +25,13 @@ html, body{
     background-color: #007965 !important; 
     color: #ffffff !important;
 }
+.indev-bg-danger{
+    background-color: #FF6363 !important;
+    color: #ffffff;
+}
+.indev-bg-warning{
+    background-color: #F8B400 !important;
+    color: #ffffff;
+}
 
 

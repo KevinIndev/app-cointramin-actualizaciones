@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="list_associates">
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <button pButton type="button" label="Nuevo" class="p-button-success"></button>
     </div>
@@ -18,28 +18,32 @@
         </div>
     </div>
     <div class="card" *ngIf = "true">
-        <p-table [value]="list_associates" responsiveLayout="scroll">
+        <p-table [value]="list_associates" [scrollable]="true" scrollHeight="400px">
             <ng-template pTemplate="header">
                 <tr>
-                    <th>Nombres</th>
-                    <th>Identificación</th>
-                    <th>Apellidos</th>
                     <th>Estado</th>
+                    <th>Tipo ID</th>
+                    <th>Identificación</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
                     <th>Ult. Actualización</th>
-                    <th style="width:4rem"></th>
+                    <th style="width:2rem"></th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-associate>
                 <tr>
-                    <td>{{associate.names}}</td>
-                    <td>{{associate.number_identity}}</td>
-                    <td>{{associate.surname_1}} {{associate.surname_2}}</td>
                     <td>
-                        <p-chip styleClass="indev-bg-success">
-                            {{associate.status}}
-                        </p-chip>
+                        <span class="badge rounded-pill p-2" [ngClass]="{'indev-bg-success':associate.modelTypeStatus.code === 'A',
+                                                                         'indev-bg-warning':associate.modelTypeStatus.code === 'X',
+                                                                         'indev-bg-danger':associate.modelTypeStatus.code === 'R'}">
+                            {{associate.modelTypeStatus.concept}}
+                        </span>
                     </td>
-                    <td>{{associate.updated_data}}</td>
+                    <td>{{associate.type_identity}}</td>
+                    <td>{{associate.number_identity}}</td>
+                    <td>{{associate.names}}</td>
+                    <td>{{associate.surname_1}} {{associate.surname_2}}</td>
+                    <td>{{associate.update_data}}</td>
                     <td>
                         <button type="button" class="p-button-rounded btn-view border-0" pButton icon="pi pi-eye"></button>
                     </td>
