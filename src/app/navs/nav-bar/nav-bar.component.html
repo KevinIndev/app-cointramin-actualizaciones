@@ -1,10 +1,13 @@
-<ul class="nav justify-content-end">
+<ul class="nav justify-content-end py-2">
     <li class="nav-item">
-      <h5>
-        <a class="nav-link text-dark" href="#">
-          <p-avatar label="U" shape="circle"></p-avatar>
-          <span class="px-2"><strong>User name</strong></span>
+      <div class="user pr-5" *ngIf="username">
+        <a class="d-flex text-dark text-decoration-none" href="#">
+            <p-avatar label="{{IconUser()}}" styleClass="border border-dark" size="large" shape="circle"></p-avatar>
+            <span class="px-2"><strong style="font-size: 14pt;">{{username}}</strong>
+                <br>
+                <span class="text-secondary">{{user_role}}</span>
+            </span>
         </a>
-      </h5>
+    </div>
     </li>
   </ul>

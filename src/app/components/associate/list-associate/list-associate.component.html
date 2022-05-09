@@ -1,7 +1,5 @@
 <div class="container-fluid" *ngIf="list_associates">
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <button pButton type="button" label="Nuevo" class="p-button-success"></button>
-    </div>
+    
     <div class="row">
         <div class="col-12">
             <h4 class="font-primary">
@@ -16,8 +14,11 @@
                 <input type="text" pInputText name="inputSearch" #inputSearch = "ngModel" [(ngModel)]="params_search" placeholder="Search">         
             </span>
         </div>
+        <div class="col-auto">
+            <button pButton type="button" label="Nuevo" class="p-button-success"></button>
+        </div>
     </div>
-    <div class="card" *ngIf = "true">
+    <div class="card shadow" *ngIf = "true">
         <p-table [value]="list_associates" [scrollable]="true" scrollHeight="400px">
             <ng-template pTemplate="header">
                 <tr>

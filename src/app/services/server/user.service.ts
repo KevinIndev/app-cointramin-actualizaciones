@@ -23,6 +23,13 @@ export class UserService {
     return this._http.post(`${this.url}/login`, params, {headers: this.headers});
   }
 
+  public GetData():Observable<any>{
+    const token = this.getToken();
+    this.headers = new HttpHeaders().set('Content-type', 'application/json')
+                                    .set('Authorization', token);
+    return this._http.get(`${this.url}/data`,{headers: this.headers});
+  }
+
   public setToken(token: string){
     localStorage.setItem('token', CryptoJS.AES.encrypt(token,this.key_login).toString());
   }
@@ -32,7 +39,7 @@ export class UserService {
       const token = CryptoJS.AES.decrypt(localStorage.getItem('token') as string, this.key_login).toString(CryptoJS.enc.Utf8);
       return token;
     } catch (error) {
-      return '---';
+      return '';
     }
   }
 
@@ -53,5 +60,10 @@ export class UserService {
       }
     });
     return status_validation;
+  }
+
+  public Logout(){
+    localStorage.clear();
+    return true;
   }
 }

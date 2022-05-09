@@ -15,9 +15,10 @@ export class SessionGuard implements CanActivate {
   }
   canActivate() {
     const token = this._user_service.getToken();
-    if(token){
+    if(token && token.length > 0){
       return true;
     } else {
+      this.route.navigate(['/login']);
       return false;
     }
   }
