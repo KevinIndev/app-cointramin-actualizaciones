@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server",
     "build": "ng build --prod",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
@@ -54,6 +54,5 @@
   "engines": {
     "node": "16.15.0",
     "npm": "8.5.3"
-  }, 
-  "files": ["procfile"]
+  }
 }
