@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { UserService } from 'src/app/services/server/user.service';
-
+import {response_standars, map_message_service} from 'src/app/services/indev-standards';
 
 @Component({
   selector: 'app-login',
@@ -29,18 +29,17 @@ export class LoginComponent implements OnInit {
   public login(){
     this._user_service.Login(this.login_params).subscribe({
       next: (response) => {
-        console.log(response);
-        if(response.status && response.status === 'SUCCESS'){
+        if(response.status && response.status === response_standars.success){
           console.log(response.token);
         } else {
-          this._message_service.add({severity:'success',summary: 'Sistema cointramin', detail: response.message});
+          this._message_service.add(map_message_service(response.status as string,response.message as string));
         }
       },
       error: (err) => {
         const message = err.error.message?err.error.message: 'Error en el servidor. Sin status';
         console.log(">>ERROR EN EL SERVIODR");
         console.log(err);
-        this._message_service.add({severity:'error',summary: 'Sistema cointramin', detail: message});
+        this._message_service.add(map_message_service(response_standars.error, message));
       }
     });
   }

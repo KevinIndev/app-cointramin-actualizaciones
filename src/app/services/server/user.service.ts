@@ -8,6 +8,8 @@ import { global } from './global';
 })
 export class UserService {
   
+  private key_login = 'INDEV_09052022_'
+
   public url: string | string[] | undefined;
   public headers: HttpHeaders | undefined;
   constructor(private _http: HttpClient) {
@@ -16,5 +18,9 @@ export class UserService {
 
   public Login(params:{}):Observable<any>{
     return this._http.post(`${this.url}/login`, params, {headers: this.headers});
+  }
+
+  public setToken(token: string | string[]){
+    
   }
 }
