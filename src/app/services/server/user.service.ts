@@ -2,7 +2,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { global } from './global';
-import * as CryptoJS from 'crypto-js';
 import { response_standars } from '../indev-standards';
 
 @Injectable({
@@ -31,12 +30,12 @@ export class UserService {
   }
 
   public setToken(token: string){
-    localStorage.setItem('token', CryptoJS.AES.encrypt(token,this.key_login).toString());
+    localStorage.setItem('token',token);
   }
 
   public getToken(){
     try {
-      const token = CryptoJS.AES.decrypt(localStorage.getItem('token') as string, this.key_login).toString(CryptoJS.enc.Utf8);
+      const token = localStorage.getItem('token') as string ;
       return token;
     } catch (error) {
       return '';
