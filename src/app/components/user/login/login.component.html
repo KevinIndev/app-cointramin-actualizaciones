@@ -1,1 +1,69 @@
-<p>login works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center">
+            <p-messages [closable]="false"></p-messages>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-4">
+            <div class="row text-center">
+                <div class="col-12">
+                    <h3 class="font-primary" style="color: #007965;">
+                        <strong class="name-app">Sistema Cointramin</strong>
+                    </h3>
+                </div>
+            </div>
+            <div class="card border-0 shadow" style="background-color: #077461;">
+                <div class="card-body py-4">
+                    <div class="row text-center mt-3">
+                        <div class="col-12">
+                            <form #frmLogin = "ngForm" (ngSubmit)="login()">
+                                <div class="form-row mb-4">
+                                    <div class="col-12">
+                                        <span class="p-input-icon-left w-100">
+                                            <i class="pi pi-user"></i>
+                                            <input type="text" class = "input-login" name = "inputUsername" #username = "ngModel" [(ngModel)] = "login_params.username" pInputText placeholder="Usuario" pattern="[a-z]+" required>         
+                                        </span>
+                                        <small *ngIf = "username.invalid && username.touched" id="username-help" class="p-error"><strong>El usuario no es valido.</strong></small>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <span class="p-input-icon-left w-100">
+                                            <i class="pi pi-lock"></i>
+                                            <input type="password" class = "input-login" name = "inputPassword" #password = "ngModel" [(ngModel)] = "login_params.password" pInputText placeholder="Contraseña" pattern="[a-z1-9]+" required>         
+                                            <small *ngIf = "password.invalid && password.touched" id="username-help" class="p-error"><strong>La contraseña no es valido.</strong></small>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-row mb-4 text-left">
+                                    <div class="col">
+                                        <a href="#" class="text-light">
+                                            <small>¿Olvidaste la contraseña?</small>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <button pButton pRipple type="submit" label="Iniciar sesion" class="p-button-rounded border-0 btn-login" [disabled]="frmLogin.invalid"></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4 text-center">
+        <div class="col-12">
+            <small>
+                <strong>
+                    &copy; 2022 Cointramin. Todos los derechos reservados
+                    <br>
+                    Powerby InDev
+                </strong>
+            </small>
+        </div>
+    </div>
+</div>

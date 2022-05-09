@@ -1,0 +1,9 @@
+
+.btn-view{
+    background-color: #ffc84785;
+    color: #a17f2e;
+}
+.btn-view:hover{
+    background-color: #a17f2e;
+    color: #ffffff;
+}

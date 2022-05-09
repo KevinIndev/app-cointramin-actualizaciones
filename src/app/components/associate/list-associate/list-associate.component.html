@@ -1,60 +1,51 @@
 <div class="container-fluid">
-    <h4 class="font-primary">
-        <strong>Lista de asociados</strong>
-    </h4>
-    <div class="card border-0">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-1">
-                    <strong>Tipo ID</strong>
-                </div>
-                <div class="col-md-2">
-                    <strong>No. Identificación</strong>
-                </div>
-                <div class="col-md-2">
-                    <strong>Nombres</strong>
-                </div>
-                <div class="col-md-2">
-                    <strong>Apellidos</strong>
-                </div>
-                <div class="col-md-2">
-                    <strong>Ult. Actualización</strong>
-                </div>
-                <div class="col-md-2">
-                    <strong>Estado</strong>
-                </div>
-            </div>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button pButton type="button" label="Nuevo" class="p-button-success"></button>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h4 class="font-primary">
+                <strong>Lista de asociados</strong>
+            </h4>
         </div>
     </div>
-
-    <div class="card border-0 mt-3">
-        <div class="card-body">
-            <div class="row border-bottom py-4">
-                <div class="col-md-1">
-                    <p>CC</p>
-                </div>
-                <div class="col-md-2">
-                    <p>1065853626</p>
-                </div>
-                <div class="col-md-2">
-                    <p>KEVIN E</p>
-                </div>
-                <div class="col-md-2">
-                    <P>MARTINEZ CAMPO</P>
-                </div>
-                <div class="col-md-2">
-                    <p>Hace 2 meses</p>
-                </div>
-                <div class="col-md-2">
-                    <p-chip>
-                        Content
-                    </p-chip>
-                </div>
-                <div class="col-md-1">
-                    <p>Edit</p>
-                </div>
-            </div>
+    <div class="row mb-3">
+        <div class="col-auto">
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input type="text" pInputText name="inputSearch" #inputSearch = "ngModel" [(ngModel)]="params_search" placeholder="Search">         
+            </span>
         </div>
+    </div>
+    <div class="card" *ngIf = "true">
+        <p-table [value]="list_associates" responsiveLayout="scroll">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Nombres</th>
+                    <th>Identificación</th>
+                    <th>Apellidos</th>
+                    <th>Estado</th>
+                    <th>Ult. Actualización</th>
+                    <th style="width:4rem"></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-associate>
+                <tr>
+                    <td>{{associate.names}}</td>
+                    <td>{{associate.number_identity}}</td>
+                    <td>{{associate.surname_1}} {{associate.surname_2}}</td>
+                    <td>
+                        <p-chip styleClass="indev-bg-success">
+                            {{associate.status}}
+                        </p-chip>
+                    </td>
+                    <td>{{associate.updated_data}}</td>
+                    <td>
+                        <button type="button" class="p-button-rounded btn-view border-0" pButton icon="pi pi-eye"></button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
     </div>
 
 </div>
