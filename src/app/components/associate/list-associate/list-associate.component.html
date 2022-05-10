@@ -46,7 +46,7 @@
                     <td>{{associate.surname_1}} {{associate.surname_2}}</td>
                     <td>{{associate.update_data}}</td>
                     <td>
-                        <button type="button" class="p-button-rounded btn-view border-0" pButton icon="pi pi-eye"></button>
+                        <button type="button" class="p-button-rounded btn-view border-0" pButton icon="pi pi-eye" [routerLink]="['associate/details', associate.number_identity]"></button>
                     </td>
                 </tr>
             </ng-template>

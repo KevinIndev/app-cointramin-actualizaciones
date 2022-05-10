@@ -12,7 +12,7 @@ import {ChipModule} from 'primeng/chip';
 import { InputTextModule } from 'primeng/inputtext';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
-
+import {TabViewModule} from 'primeng/tabview';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +21,8 @@ import { MasterComponent } from './master/master.component';
 import { NavSideComponent } from './navs/nav-side/nav-side.component';
 import { NavBarComponent } from './navs/nav-bar/nav-bar.component';
 import { ListAssociateComponent } from './components/associate/list-associate/list-associate.component';
+import { DetailsAssociateComponent } from './components/associate/details-associate/details-associate.component';
+import { PersonalInformationsComponent } from './components/associate/informations/personal-informations/personal-informations.component';
 
 
 
@@ -32,7 +34,9 @@ import { ListAssociateComponent } from './components/associate/list-associate/li
     MasterComponent,
     NavSideComponent,
     NavBarComponent,
-    ListAssociateComponent
+    ListAssociateComponent,
+    DetailsAssociateComponent,
+    PersonalInformationsComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +51,8 @@ import { ListAssociateComponent } from './components/associate/list-associate/li
     ChipModule,
     InputTextModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    TabViewModule
   ],
   providers: [],
   bootstrap: [AppComponent]
