@@ -13,6 +13,9 @@ import { InputTextModule } from 'primeng/inputtext';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import {TabViewModule} from 'primeng/tabview';
+import { DropdownModule } from 'primeng/dropdown';
+import { CalendarModule } from 'primeng/calendar';
+import {ToastModule} from 'primeng/toast';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +26,7 @@ import { NavBarComponent } from './navs/nav-bar/nav-bar.component';
 import { ListAssociateComponent } from './components/associate/list-associate/list-associate.component';
 import { DetailsAssociateComponent } from './components/associate/details-associate/details-associate.component';
 import { PersonalInformationsComponent } from './components/associate/informations/personal-informations/personal-informations.component';
+
 
 
 
@@ -52,7 +56,10 @@ import { PersonalInformationsComponent } from './components/associate/informatio
     InputTextModule,
     MessagesModule,
     MessageModule,
-    TabViewModule
+    TabViewModule,
+    DropdownModule,
+    CalendarModule,
+    ToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]

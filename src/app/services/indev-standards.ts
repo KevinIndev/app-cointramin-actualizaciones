@@ -34,3 +34,14 @@ export function map_message_service(status: string, message: string){
 
     return result;
 }
+
+/**
+ * Metodo que permite mapear un error en consola para validar procesos de LOG
+ * @param error {any} error a mostrar en consola.
+ * @author @copyright 2022. Indev Develops
+ */
+export function MapErrorConsole(error:any){
+    const message = error.error.status?error.error.message: 'Error no identificado. Comuniquese con soporte';
+    console.log('>> ERROR DEL SERVIDOR: ' + message);
+    console.log(error as any);
+}

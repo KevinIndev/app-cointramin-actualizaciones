@@ -34,4 +34,15 @@ html, body{
     color: #ffffff;
 }
 
+.indev-input input, .indev-input .indev-p-dropdown, .indev-input .indev-calendar{
+    width: 100%;
+    background-color: #f8f6f6 !important;
+    border-color: 1px solid #949494 !important;
+    font-size: 12pt !important;
+}
+
+.indev-input h5{
+    color: #242424 !important;
+}
+
 
