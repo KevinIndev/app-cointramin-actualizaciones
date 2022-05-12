@@ -2,53 +2,30 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card border-0 shadow">
-                <div class="card-body">
+                <div class="card-body" *ngIf="associate">
                     <!--DISEÑO DEL PERFIL BASICO-->
                     <div class="row">
                         <div class="col-auto">
-                            <img src="/assets/multimedia/img/user.png" alt="Imagen usuario" width="150" height="150">
+                            <img src="/assets/multimedia/img/user.png" alt="Imagen usuario" width="100" height="100">
                         </div>
                         <div class="col-8">
                             <div class="row">
                                 <div class="col-12">
-                                    <h5 class="font-primary">
-                                        Kevin E. Martinez Campo
-                                        <span class="badge badge-warning" style="font-size: 10pt;">Activo</span>
+                                    <h5>
+                                        {{associate.names}} {{associate.surname_1}} {{associate.surname_2}}
+                                        <span class="badge badge-warning" style="font-size: 10pt;">{{associate.modelTypeStatus.concept}}</span>
                                     </h5>
                                     <small class="text-primary">
-                                        <i class="pi pi-user mr-2"></i><strong>UID: 10065378483</strong>
+                                        <i class="pi pi-user mr-2"></i><strong>UID: {{associate.number_identity}}</strong>
+                                        <span class="text-dark ml-4"><i class="pi pi-map-marker mr-2"></i><strong>Valledupar</strong></span>
                                     </small>
                                     <div class="description mt-3">
                                         <div class="row">
-                                            <div class="col-6">
-                                                <span><strong>Fecha de nacimiento:</strong></span>
-                                            </div>
-                                            <div class="col-6">
-                                                <span>02/09/1999 (23 años)</span>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <span><strong>Ubicacion actual:</strong></span>
-                                            </div>
-                                            <div class="col-6">
-                                                <span>Valledupar - Cesar</span>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <span><strong>Contacto:</strong></span>
-                                            </div>
-                                            <div class="col-6">
-                                                <span>(+57) 3243298563</span>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-6">
+                                            <div class="col-4">
                                                 <span><strong>Ultima actualizacion:</strong></span>
                                             </div>
-                                            <div class="col-6">
-                                                <span>02/09/1999 (Hace 3 meses)</span>
+                                            <div class="col">
+                                                <span>{{associate.update_data?associate.update_data:'---'}} ({{associate.onUser?associate.onUser.names:'---'}})</span>
                                             </div>
                                         </div>
                                     </div>
@@ -69,7 +46,7 @@
         <div class="col">
             <p-tabView [styleClass]="'shadow'">
                 <p-tabPanel header="Datos personlaes" [headerStyleClass]="'text-dark'">
-                   <app-personal-informations></app-personal-informations>
+                   <app-personal-informations (send_parameters)="get_parameters($event)"></app-personal-informations>
                 </p-tabPanel>
                 <p-tabPanel header="Datos de ubicacion">
                     Content 2

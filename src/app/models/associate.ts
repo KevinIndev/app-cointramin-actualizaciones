@@ -7,8 +7,11 @@ export class Associate {
         public surname_1!: String
         public surname_2!: String
         public status!: String
-        public update_data!: Date
-        public createdBy: any
+        public update_data!: Date;
+        public createdBy: any;
+        public readonly onUser: any;
+        public readonly modelTypeStatus:any;
+
         constructor(){
             this.status_();
         }

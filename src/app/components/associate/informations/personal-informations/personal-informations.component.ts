@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Associate } from 'src/app/models/associate';
@@ -16,6 +16,8 @@ import { UtilitiesService } from 'src/app/services/server/utilities.service';
   providers: [AssociateService, UtilitiesService, MessageService]
 })
 export class PersonalInformationsComponent implements OnInit {
+
+  @Output() send_parameters = new EventEmitter<any>();
 
   private associate_id:string;
   public associate!: Associate;
@@ -84,6 +86,7 @@ export class PersonalInformationsComponent implements OnInit {
       next: (response) => {
         if(response.status && response.status === response_standars.success){
           this.associate = response.associate;
+          this.MapParameters();
           this.GetInformations();
         } else {
           this._message_service.add(map_message_service(response_standars.warning, response.message));
@@ -101,6 +104,7 @@ export class PersonalInformationsComponent implements OnInit {
       next: (response) => {
         if(response.status && response.status === response_standars.success){
           this.personal_informations = response.data as PersonalInformations;
+          this.MapParameters();
           //Validamos lista de ciudades
           this.GetLocations(this.personal_informations.d_expedition_department, 'locations_expedition');
           this.GetLocations(this.personal_informations.department_birth, 'locations_birth');
@@ -248,6 +252,14 @@ export class PersonalInformationsComponent implements OnInit {
         this._message_service.add(map_message_service(response_standars.error, 'Error en el servidor al intentar cargar los tipos de profesiones. Comuniquese con soporte'));
       }
     });
+  }
+
+  public MapParameters(){
+    const parameters = {
+      params_associate: this.associate,
+      params_birth_date: this.personal_informations.birth_date
+    }
+    this.send_parameters.emit(parameters);
   }
 
 }
