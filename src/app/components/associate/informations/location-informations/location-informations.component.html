@@ -1,0 +1,91 @@
+<p-toast></p-toast>
+<div class="container-fluid">
+    <form #frmLocationInformations = "ngForm" (ngSubmit)="OnSubmit()">
+        <div class="form-row mt-3">
+            <div class="col-4 indev-input">
+                <h5>DIRECCION RESIDENCIAL</h5>
+                <input type="text" pInputText autocomplete="off" name="inputResidenceAdress" #residence_adress = "ngModel" [(ngModel)]="location_information.residence_adress" required>
+                <small *ngIf="residence_adress.invalid || (residence_adress.invalid && residence_adress.touched)" class="text-danger"><strong>El campo no es valido</strong></small>
+            </div>
+            <div class="col-2 indev-input">
+                <h5>PAIS</h5>
+                <input type="text" pInputText autocomplete="off" name="inputPais" #country = "ngModel" [(ngModel)]="location_information.country" required>
+                <small *ngIf="country.invalid || (country.invalid && country.touched)" class="text-danger"><strong>El campo no es valido</strong></small>
+            </div>
+            <div class="col-3 indev-input">
+                <h5>DEPARTAMENTO</h5>
+                <p-dropdown [options]="list_departments" [styleClass]="'indev-p-dropdown'" name="inputDepartment" #department = "ngModel" [(ngModel)]="location_information.department" optionLabel="name" optionValue="code" 
+                    (onChange)="GetLocations(department.value,'locations')" placeholder="SELECCIONAR..." [disabled]="!list_departments" [required]="true"></p-dropdown>     
+                    <small *ngIf = "department.invalid || (department.touched && department.invalid)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+            <div class="col-3 indev-input">
+                <h5>CIUDAD</h5>
+                <p-dropdown [styleClass]="'indev-p-dropdown'"  [options]="list_locations" name="inputCity" #city = "ngModel" [(ngModel)]="location_information.city"  optionValue="code" optionLabel="name" [filter]="true" filterBy="name" placeholder="SELECCIONAR..." [disabled]="false" [required]="true">
+                    <ng-template let-location pTemplate="item">
+                        <div>
+                            <p>{{location.name}}</p>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+                <small *ngIf = "city.invalid || (city.touched && city.invalid)" class="text-danger"><strong>El campo no es valido.</strong></small>    
+            </div>
+        </div>
+        <div class="form-row mt-3">
+            <div class="col-2 indev-input">
+                <h5>No. CELULAR</h5>
+                <input type="text" pInputText autocomplete="off" name="inputNumberPhone" #number_phone = "ngModel" [(ngModel)]="location_information.number_phone" required>
+                <small *ngIf="number_phone.invalid || (number_phone.invalid && number_phone.touched)" class="text-danger"><strong>El campo no es valido</strong></small>
+            </div>
+            <div class="col-2 indev-input">
+                <h5>No. TELEFONICO</h5>
+                <input type="text" pInputText autocomplete="off" name="inputNumberTel" #number_tel = "ngModel" [(ngModel)]="location_information.number_tel" required>
+                <small *ngIf="number_tel.invalid || (number_tel.invalid && number_tel.touched)" class="text-danger"><strong>El campo no es valido</strong></small>
+            </div>
+            <div class="col-3 indev-input">
+                <h5>TIPO DE VIVIENDA</h5>
+                <p-dropdown [styleClass]="'indev-p-dropdown'" [options]="list_types_housing" name="inputTypeHousing" #type_housing="ngModel" [(ngModel)]="location_information.type_housing"
+                    optionLabel="concept" optionValue="code" [disabled]="!list_types_housing" placeholder="SELECCIONAR..." [required]="true"></p-dropdown>
+                <small *ngIf="type_housing.invalid || (type_housing.invalid && type_housing.touched)" class="text-danegr"><strong>El campo no es valido</strong></small>
+            </div>
+            <div class="col-5 indev-input">
+                <h5>CORREO ELECTRONICO</h5>
+                <input type="text" pInputText autocomplete="off" name="inputEmail" #email = "ngModel" [(ngModel)]="location_information.email" required>
+                <small *ngIf="email.invalid || (email.invalid && email.touched)" class="text-danger"><strong>El campo no es valido</strong></small>
+            </div>
+        </div>
+        <div class="form-row mt-3">
+            <div class="col-4 indev-input">
+                <h5>DIRECCION LABORAL</h5>
+                <input type="text" pInputText autocomplete="off" name="inputAdressWork" #adress_work = "ngModel" [(ngModel)]="location_information.adress_work" required>
+                <small *ngIf="adress_work.invalid || (adress_work.invalid && adress_work.touched)" class="text-danger"><strong>El campo no es valido</strong></small>
+            </div>
+            <div class="col-2 indev-input">
+                <h5>PAIS</h5>
+                <input type="text" pInputText autocomplete="off" name="inputCountryWork" #country_work = "ngModel" [(ngModel)]="location_information.country_work" required>
+                <small *ngIf="country_work.invalid || (country_work.invalid && country_work.touched)" class="text-danger"><strong>El campo no es valido</strong></small>
+            </div>
+            <div class="col-3 indev-input">
+                <h5>DEPARTAMENTO</h5>
+                <p-dropdown [options]="list_departments" [styleClass]="'indev-p-dropdown'" name="inputDepartmentWork" #department_work = "ngModel" [(ngModel)]="location_information.department_work" optionLabel="name" optionValue="code" 
+                    (onChange)="GetLocations(department_work.value, 'locations_work')" placeholder="SELECCIONAR..." [disabled]="!list_departments" [required]="true"></p-dropdown>     
+                    <small *ngIf = "department_work.invalid || (department_work.touched && department.invalid)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+            <div class="col-3 indev-input">
+                <h5>CIUDAD</h5>
+                <p-dropdown [styleClass]="'indev-p-dropdown'"  [options]="list_locations_work" name="inputCityWork" #city_work = "ngModel" [(ngModel)]="location_information.city_work"  optionValue="code" optionLabel="name" [filter]="true" filterBy="name" placeholder="SELECCIONAR..." [disabled]="!list_locations_work" [required]="true">
+                    <ng-template let-location pTemplate="item">
+                        <div>
+                            <p>{{location.name}}</p>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+                <small *ngIf = "city_work.invalid || (city_work.touched && city_work.invalid)" class="text-danger"><strong>El campo no es valido.</strong></small>    
+            </div>
+        </div>
+        <div class="form-row justify-content-end mt-3">
+            <div class="col-auto">
+                <p-button type="submit" label="Guardar cambios" [styleClass]="'bg-success border-0'" [disabled]="frmLocationInformations.invalid === true"></p-button>
+            </div>
+        </div>
+    </form>
+</div>

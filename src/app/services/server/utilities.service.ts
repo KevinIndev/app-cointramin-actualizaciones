@@ -51,4 +51,12 @@ export class UtilitiesService {
   GetTypesStratas():Observable<any>{
     return this._http.get(`${this.url}typesStrata/list`, {headers: this.headers});
   }
+
+  GetTypesHousing():Observable<any>{
+    return this._http.get(`${this.url}typesHousing/list`, {headers: this.headers});
+  }
+
+  GetTypesOccupations():Observable<any>{
+    return this._http.get(`${this.url}typesOccupation/list`, {headers: this.headers});
+  }
 }

@@ -1,0 +1,39 @@
+<p-toast></p-toast>
+<div class="container_fluid">
+    <form #frmEconomicActivity ="ngForm" (ngSubmit)="OnSubmit()">
+        <div class="form-row">
+            <div class="col-3 indev-input">
+                <h5>TIPO DE OCUPACIÓN</h5>
+                <p-dropdown [options]="list_types_occupations" [styleClass]="'indev-p-dropdown'" name="inputOccupation" #occupation = "ngModel" [(ngModel)]="economic_activity.occupation"
+                    optionLabel="concept" optionValue="code" [disabled]="!list_types_occupations" [required]="true"></p-dropdown>
+                <small *ngIf="occupation.invalid && (occupation.invalid && occupation.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>                    
+            </div>
+            <div class="col-6">
+                <h5 class="border-bottom text-center p-1">ACTIVIDAD ECONOMICA CIIU</h5>
+                <div class="row px-2">
+                    <div class="col-6 indev-input">
+                        <h6>Principal</h6>
+                        <input type="text" autocomplete="off" pInputText name="inputActiviyPrimary" #activity_primary="ngModel" [(ngModel)] ="economic_activity.activity_primary" placeholder="---" required>
+                        <small *ngIf="activity_primary.invalid && (activity_primary.invalid && activity_primary.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+                    </div>
+                    <div class="col-6 indev-input">
+                        <h6>Secundaria</h6>
+                        <input type="text" pInputText autocomplete="off" name="inputActiviySecondary" #activity_secondary="ngModel" [(ngModel)] ="economic_activity.activity_secondary" placeholder="---">
+                        <small *ngIf="activity_secondary.invalid && (activity_secondary.invalid && activity_secondary.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3 indev-input">
+                <h5>DECLARA RENTA</h5>
+                <p-dropdown [options]="[{code:'N', concept: 'NO'}, {code:'S', concept:'SI'}]" [styleClass]="'indev-p-dropdown'" name="inputDeclareIncome" #declare_income="ngModel" [(ngModel)]="economic_activity.declare_income"
+                    optionLabel="concept" optionValue="code" placeholder="SELECCIONAR..." [required]="true"></p-dropdown>
+                    <small *ngIf="declare_income && (declare_income.invalid && declare_income.touched)" class="text-danegr"><strong>El campo no es valido.</strong></small>
+            </div>
+        </div>
+        <div class="form-row justify-content-end mt-3">
+            <div class="col-auto">
+                <p-button type="submit" label="Guardar cambios" [styleClass]="'bg-success border-0'" [disabled]="frmEconomicActivity.invalid === true"></p-button>
+            </div>
+        </div>
+    </form>
+</div>

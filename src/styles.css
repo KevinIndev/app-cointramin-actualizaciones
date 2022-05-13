@@ -34,7 +34,7 @@ html, body{
     color: #ffffff;
 }
 
-.indev-input input, .indev-input .indev-p-dropdown, .indev-input .indev-calendar{
+.indev-input input, .indev-input .indev-p-dropdown{
     width: 100%;
     background-color: #f8f6f6 !important;
     border-color: 1px solid #949494 !important;

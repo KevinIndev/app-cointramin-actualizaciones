@@ -19,7 +19,7 @@ export class PersonalInformationsComponent implements OnInit {
 
   @Output() send_parameters = new EventEmitter<any>();
 
-  private associate_id:string;
+  public associate_id!: string;
   public associate!: Associate;
   public list_departments:any;
   public list_locations_expedition: any;
@@ -38,19 +38,34 @@ export class PersonalInformationsComponent implements OnInit {
               private _utilities_service: UtilitiesService,
               private _message_service: MessageService,
               private _activate_route: ActivatedRoute) {
-                this.associate_id = this._activate_route.snapshot.params['id'];
+                this.associate = Object();
                 this.personal_informations = Object();
               }
 
   ngOnInit(): void {
-    this.GetAssociate();
     this.LoadUtilities();
+    this._activate_route.parent?.params.subscribe({
+      next: (params) => {
+        const id = params['id'];
+        if(id){
+          this.associate_id = id;
+          this.GetAssociate();
+        } else {
+          this._message_service.add(map_message_service(response_standars.warning, 'El parametro <<id>> no establecido en la ruta'));
+        }
+      },
+      error: (err) => {
+        MapErrorConsole(err);
+        this._message_service.add(map_message_service(response_standars.error, 'Error al obtener los parametros de navegacion'));
+      }
+    })
   }
 
   onSubmit(){
     this._associate_service.UpdateData(this.associate_id, this.associate).subscribe({
       next:(response) => {
         if(response.status && response.status === response_standars.success){
+          this.personal_informations.associate_id = this.associate_id;
           this._personal_informations_service.AddInformations(this.personal_informations).subscribe({
             next:(response) => {
               this._message_service.add(map_message_service(response.status, response.message));

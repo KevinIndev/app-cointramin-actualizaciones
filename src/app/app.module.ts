@@ -14,8 +14,9 @@ import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import {TabViewModule} from 'primeng/tabview';
 import { DropdownModule } from 'primeng/dropdown';
-import { CalendarModule } from 'primeng/calendar';
 import {ToastModule} from 'primeng/toast';
+import {TabMenuModule} from 'primeng/tabmenu';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +27,8 @@ import { NavBarComponent } from './navs/nav-bar/nav-bar.component';
 import { ListAssociateComponent } from './components/associate/list-associate/list-associate.component';
 import { DetailsAssociateComponent } from './components/associate/details-associate/details-associate.component';
 import { PersonalInformationsComponent } from './components/associate/informations/personal-informations/personal-informations.component';
+import { LocationInformationsComponent } from './components/associate/informations/location-informations/location-informations.component';
+import { EconomicActivityComponent } from './components/associate/informations/economic-activity/economic-activity.component';
 
 
 
@@ -40,7 +43,9 @@ import { PersonalInformationsComponent } from './components/associate/informatio
     NavBarComponent,
     ListAssociateComponent,
     DetailsAssociateComponent,
-    PersonalInformationsComponent
+    PersonalInformationsComponent,
+    LocationInformationsComponent,
+    EconomicActivityComponent
   ],
   imports: [
     BrowserModule,
@@ -58,8 +63,8 @@ import { PersonalInformationsComponent } from './components/associate/informatio
     MessageModule,
     TabViewModule,
     DropdownModule,
-    CalendarModule,
-    ToastModule
+    ToastModule,
+    TabMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

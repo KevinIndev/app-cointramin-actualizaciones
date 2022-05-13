@@ -1,3 +1,4 @@
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -44,17 +45,25 @@
     </div>
     <div class="row py-3">
         <div class="col">
-            <p-tabView [styleClass]="'shadow'">
+            <!--<p-tabView [styleClass]="'shadow'">
                 <p-tabPanel header="Datos personlaes" [headerStyleClass]="'text-dark'">
                    <app-personal-informations (send_parameters)="get_parameters($event)"></app-personal-informations>
                 </p-tabPanel>
                 <p-tabPanel header="Datos de ubicacion">
-                    Content 2
+                    <app-location-informations></app-location-informations>
                 </p-tabPanel>
                 <p-tabPanel header="Informacion de la empresa">
                     Content 3
                 </p-tabPanel>
-            </p-tabView>
+            </p-tabView> -->
+            <p-tabMenu [model]="menu_items"></p-tabMenu>
+            <div class="content-menu">
+                <div class="card">
+                    <div class="card-body">
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
