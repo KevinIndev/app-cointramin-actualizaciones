@@ -1,0 +1,122 @@
+<p-toast></p-toast>
+<div class="container-fluid">
+    <form #frmConyugeInformations="ngForm" (ngSubmit)="OnSubmit()">
+        <div class="form-row mb-3">
+            <div class="col-6 indev-input">
+                <h5>NOMBRE COMPLETO</h5>
+                <input type="text" pInputText name="inputNames" #names="ngModel" [(ngModel)]="conyuge_information.names" required>
+                <small *ngIf="names.invalid || (names.invalid && names.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+            <div class="col-3 indev-input">
+                <h5>T. IDENTIFICACIÓN</h5>
+                <p-dropdown [options]="list_types_identities" [styleClass]="'indev-p-dropdown'" name="inputTypeIdentity" #type_identity="ngModel" [(ngModel)]="conyuge_information.type_identity"
+                    optionLabel="name" optionValue="code" [disabled]="!list_types_identities" [required]="true"></p-dropdown>
+                <small *ngIf="type_identity.invalid || (type_identity.invalid && type_identity.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+            <div class="col-3 indev-input">
+                <h5>No. IDENTIFICACIÓN</h5>
+                <input type="text" pInputText name="inputNumberIdentity" #number_identity="ngModel" [(ngModel)]="conyuge_information.number_identity" pattern="[0-9]+" required>
+                <small *ngIf="number_identity.invalid || (number_identity.invalid && number_identity.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+        </div>
+        <div class="form-row mb-3">
+            <div class="col-3 indev-input">
+                <h5>FECHA DE EXPIDICIÓN</h5>
+                <input type="date" pInputText name="inputD_ExpeditionDate" #d_expedition_date="ngModel" [(ngModel)]="conyuge_information.d_expedition_date" required>
+                <small *ngIf="d_expedition_date.invalid || (d_expedition_date.invalid && d_expedition_date.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+            <div class="col-3 indev-input">
+                <h5>DPTO. EXPEDICIÓN</h5>
+                <p-dropdown [options]="list_departments" [styleClass]="'indev-p-dropdown'" name="inputD_ExpeditionDepartment>" #d_expedition_department="ngModel" [(ngModel)]="conyuge_information.d_expedition_date"
+                    optionLabel="name" optionValue="code" [disabled]="!list_departments" [required]="true"></p-dropdown>
+                <small *ngIf="d_expedition_department.invalid || (d_expedition_department.invalid && d_expedition_department.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+            <div class="col-3 indev-input">
+                <h5>CIUDAD EXPEDICIÓN</h5>
+                    <p-dropdown [styleClass]="'indev-p-dropdown'"  [options]="list_expedition_locations" name="inputD_ExpeditionCity" #d_expedition_city = "ngModel" [(ngModel)]="conyuge_information.d_expedition_city"  
+                        optionValue="code" optionLabel="name" [filter]="true" filterBy="name" [disabled]="!list_expedition_locations" [required]="true">
+                        <ng-template let-location pTemplate="item">
+                            <div>
+                                <p>{{location.name}}</p>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
+                    <small *ngIf="d_expedition_city.invalid || (d_expedition_city.touched && d_expedition_city.invalid)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+            <div class="col-3 indev-input">
+                <h5>FECHA DE NACIMIENTO</h5>
+                <input type="date" pInputText name="inputBirthDate" #birth_date="ngModel" [(ngModel)]="conyuge_information.birth_date" required>
+                <small *ngIf="birth_date.invalid || (birth_date.invalid && birth_date.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+        </div>
+        <div class="form-row mb-3">
+            <div class="col-3 indev-input">
+                <h5>PAIS</h5>
+                <input type="text" pInputText name="inputCountry" #country="ngModel" [(ngModel)]="conyuge_information.country" required>
+                <small *ngIf="country.invalid || (country.invalid && country.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+            <div class="col-3 indev-input">
+                <h5>DEPARTAMENTO</h5>
+                <p-dropdown [options]="list_departments" [styleClass]="'indev-p-dropdown'" name="inputDepartment>" #department="ngModel" [(ngModel)]="conyuge_information.department"
+                    optionLabel="name" optionValue="code" [disabled]="!list_departments" [required]="true"></p-dropdown>
+                <small *ngIf="department.invalid || (department.invalid && department.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+            <div class="col-3 indev-input">
+                <h5>CIUDAD</h5>
+                    <p-dropdown [styleClass]="'indev-p-dropdown'"  [options]="list_locations" name="inputCity" #city = "ngModel" [(ngModel)]="conyuge_information.city"  
+                        optionValue="code" optionLabel="name" [filter]="true" filterBy="name" [disabled]="!list_locations" [required]="true">
+                        <ng-template let-location pTemplate="item">
+                            <div>
+                                <p>{{location.name}}</p>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
+                    <small *ngIf="city.invalid || (city.touched && city.invalid)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+            <div class="col-3 indev-input">
+                <h5>DIRECCIÓN RESIDENCIAL</h5>
+                <input type="text" pInputText name="inputResidenceAdress" #residence_adress="ngModel" [(ngModel)]="conyuge_information.residence_adress" required>
+                <small *ngIf="residence_adress.invalid || (residence_adress.invalid && residence_adress.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+        </div>
+        <div class="form-row mb-3">
+            <div class="col-2 indev-input">
+                <h5>TELEFONO</h5>
+                <input type="text" pInputText name="inputNumberTel" #number_tel="ngModel" [(ngModel)]="conyuge_information.number_tel" pattern="[0-9]+" required>
+                <small *ngIf="number_tel.invalid || (number_tel.invalid && number_tel.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+            <div class="col-2 indev-input">
+                <h5>CELULAR</h5>
+                <input type="text" pInputText name="inputNumberPhone" #number_phone="ngModel" [(ngModel)]="conyuge_information.number_phone" pattern="[0-9]+" required>
+                <small *ngIf="number_phone.invalid || (number_phone.invalid && number_phone.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+            <div class="col-2 indev-input">
+                <h5>OCUPACIÓN</h5>
+                <p-dropdown [options]="list_types_occupations" [styleClass]="'indev-p-dropdown'" name="inputOccupation" #occupation="ngModel" [(ngModel)]="conyuge_information.occupation"
+                    optionLabel="concept" optionValue="code" [disabled]="!list_types_occupations" [required]="true"></p-dropdown>
+                <small *ngIf="occupation.invalid || (occupation.invalid && occupation.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+            <div class="col-3 indev-input">
+                <h5>EMPRESA</h5>
+                <input type="text" pInputText name="inputBusinessName" #business_name="ngModel" [(ngModel)]="conyuge_information.business_name" required>
+                <small *ngIf="business_name.invalid || (business_name.invalid && business_name.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+            <div class="col-3 indev-input">
+                <h5>CARGO</h5>
+                <input type="text" pInputText name="inputJobRole" #job_role="ngModel" [(ngModel)]="conyuge_information.job_role" required>
+                <small *ngIf="job_role.invalid || (job_role.invalid && job_role.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+        </div>
+        <div class="form-row justify-content-between">
+            <div class="col-3 indev-input">
+                <h5>T. CONTRATO</h5>
+                <p-dropdown [options]="list_types_contract" [styleClass]="'indev-p-dropdown'" name="inputTypeContract" #type_contract="ngModel" [(ngModel)]="conyuge_information.type_contract"
+                    optionLabel="concept" optionValue="code" [disabled]="!list_types_contract" [required]="true"></p-dropdown>
+                <small *ngIf="type_contract.invalid || (type_contract.invalid && type_contract.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+            <div class="col-auto align-self-end">
+                <p-button type="submit" label="Guardar cambios" [styleClass]="'bg-success border-0'" [disabled]="frmConyugeInformations.invalid === true"></p-button>
+            </div>
+        </div>
+    </form>
+</div>

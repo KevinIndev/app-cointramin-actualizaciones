@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DetailsAssociateComponent } from './components/associate/details-associate/details-associate.component';
+import { ConyugeInformationsComponent } from './components/associate/informations/conyuge-informations/conyuge-informations.component';
 import { EconomicActivityComponent } from './components/associate/informations/economic-activity/economic-activity.component';
 import { JobInformationsComponent } from './components/associate/informations/job-informations/job-informations.component';
 import { LocationInformationsComponent } from './components/associate/informations/location-informations/location-informations.component';
@@ -19,7 +20,8 @@ const routes: Routes = [
       {path:'personal-informations', component:PersonalInformationsComponent},
       {path:'location-informations', component:LocationInformationsComponent},
       {path:'economic-activity', component:EconomicActivityComponent},
-      {path:'job_informations', component:JobInformationsComponent}
+      {path:'job-informations', component:JobInformationsComponent},
+      {path: 'conyuge-informations', component:ConyugeInformationsComponent}
     ]}
   ]}
 ];
