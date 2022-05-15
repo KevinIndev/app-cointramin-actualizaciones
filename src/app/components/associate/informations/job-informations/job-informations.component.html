@@ -1,0 +1,94 @@
+<p-toast></p-toast>
+<div class="container-fluid">
+    <form #frmJobInformations ="ngForm" (ngSubmit)="OnSubmit()">
+        <div class="form-row mb-3">
+            <div class="col-3 indev-input">
+                <h5>TIPO DE CONTRACTO</h5>
+                <p-dropdown [options]="list_types_contract" [styleClass]="'indev-p-dropdown'" name="inputTypeContract" #type_contract = "ngModel" [(ngModel)] = "job_information.type_contract"
+                    optionLabel="concept" optionValue="code" [disabled]="!list_types_contract" placeholder="SELECCIONAR..." [required]="true"></p-dropdown>
+                <small *ngIf="type_contract.invalid || (type_contract.invalid && type_contract.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+            <div class="col-3 indev-input">
+                <h5>NOMBRE / RAZON SOCIAL</h5>
+                <input type="text" pInputText name="inputBusinessNames" #business_name="ngModel" [(ngModel)]="job_information.business_name" required>
+                <small *ngIf="business_name.invalid || (business_name.invalid && business_name.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+            <div class="col-3 indev-input">
+                <h5>DIRECCIÓN</h5>
+                <input type="text" pInputText name="inputAdress" #adress="ngModel" [(ngModel)]="job_information.adress" required>
+                <small *ngIf="adress.invalid || (adress.invalid && adress.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+            <div class="col-3 indev-input">
+                <h5>DEPARTAMENTO</h5>
+                <p-dropdown [options]="list_departments" [styleClass]="'indev-p-dropdown'" name="inputDepartment" #department="ngModel" [(ngModel)]="job_information.department"
+                    (onChange)="GetLocations(job_information.department)" optionLabel="name" optionValue="code" [disabled]="!list_departments" placeholder="SELECCIONAR..." [required]="true"></p-dropdown>
+                <small *ngIf="department.invalid || (department.invalid && department.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+        </div>
+        <div class="form-row mb-3">
+            <div class="col-3 indev-input">
+                <h5>CIUDAD</h5>
+                <p-dropdown [styleClass]="'indev-p-dropdown'"  [options]="list_locations" name="inputCityWork" #city = "ngModel" [(ngModel)]="job_information.city"  
+                    optionValue="code" optionLabel="name" [filter]="true" filterBy="name" [disabled]="!list_locations" [required]="true">
+                    <ng-template let-location pTemplate="item">
+                        <div>
+                            <p>{{location.name}}</p>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+                <small *ngIf="city.invalid || (city.invalid && city.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+            <div class="col-3 indev-input">
+                <h5>FECHA VINCULACIÓN</h5>
+                <input type="date" pInputText name="inputBondingDate" #bonding_date="ngModel" [(ngModel)]="job_information.bonding_date" required>
+                <small *ngIf="bonding_date.invalid || (bonding_date.invalid && bonding_date.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+            <div class="col-2 indev-input">
+                <h5>TELEFONO</h5>
+                <input type="text" pInputText name="inputPhone" #phone="ngModel" [(ngModel)]="job_information.phone" required>
+                <small *ngIf="phone.invalid || (phone.invalid && phone.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+            <div class="col-4 indev-input">
+                <h5>CORREO LABORAL</h5>
+                <input type="text" pInputText name="inputJobEmail" #job_email="ngModel" [(ngModel)]="job_information.job_email" required>
+                <small *ngIf="job_email.invalid || (job_email.invalid && job_email.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+        </div>
+        <div class="form-row mb-3">
+            <div class="col-4 indev-input">
+                <h5>CARGO</h5>
+                <p-dropdown [styleClass]="'indev-p-dropdown'"  [options]="list_types_jobs" name="inputJobTitle" #job_title = "ngModel" [(ngModel)]="job_information.job_title"  
+                    optionValue="code" optionLabel="concept" [filter]="true" filterBy="concept" placeholder="SELECCIONAR..." [disabled]="!list_types_jobs" [required]="true">
+                    <ng-template let-job_title pTemplate="item">
+                        <div>
+                            <p>{{job_title.concept}}</p>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+                <small *ngIf="job_title.invalid || (job_title.invalid && job_title.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+            <div class="col-2 indev-input">
+                <h5>GRUPO</h5>
+                <input type="text" pInputText name="inputGroup" #job_group="ngModel" [(ngModel)]="job_information.job_group" pattern="[1-9]+" required>
+                <small *ngIf="job_group.invalid || (job_group.invalid && job_group.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+            <div class="col-3 indev-input">
+                <h5>TIPO ROL</h5>
+                <p-dropdown [options]="list_types_roles" [styleClass]="'indev-p-dropdown'" name="inputJobRole" #job_role="ngModel" [(ngModel)]="job_information.job_role"
+                    optionLabel="concept" optionValue="code" [disabled]="!list_types_roles" placeholder="SELECCIONAR..." [required]="true"></p-dropdown>
+                <small *ngIf="job_role.invalid || (job_role.invalid && job_role.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+            <div class="col-3 indev-input">
+                <h5>SEDE</h5>
+                <p-dropdown [options]="list_headquarters" [styleClass]="'indev-p-dropdown'" name="inputCampus" #campus="ngModel" [(ngModel)]="job_information.campus"
+                    optionLabel="concept" optionValue="code" [disabled]="!list_headquarters" placeholder="SELECCIONAR..." [required]="true"></p-dropdown>
+                <small *ngIf="campus.invalid || (campus.invalid && campus.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+        </div>
+        <div class="form-row justify-content-end">
+            <div class="col-auto">
+                <p-button type="submit" label="Guardar cambios" [styleClass]="'bg-success border-0'" [disabled]="frmJobInformations.invalid === true"></p-button>
+            </div>
+        </div>
+    </form>
+</div>

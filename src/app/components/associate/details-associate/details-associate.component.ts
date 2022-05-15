@@ -20,7 +20,7 @@ export class DetailsAssociateComponent implements OnInit {
       {label: 'Datos personales', icon: 'pi pi-fw pi-user', routerLink: ['personal-informations']},
       {label: 'Datos ubicación', icon: 'pi pi-fw pi-map-marker', routerLink: ['location-informations']},
       {label:'Actividad economica', icon: 'pi pi-fw pi-briefcase', routerLink:['economic-activity']},
-      {label: 'Informacion empresa', icon: 'pi pi-fw pi-building'},
+      {label: 'Informacion empresa', icon: 'pi pi-fw pi-building', routerLink:['job_informations']},
       {label: 'Datos conyuge', icon: 'pi pi-fw pi-users'},
       {label: 'Settings', icon: 'pi pi-fw pi-cog'}
   ];

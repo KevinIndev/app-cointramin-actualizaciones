@@ -59,4 +59,20 @@ export class UtilitiesService {
   GetTypesOccupations():Observable<any>{
     return this._http.get(`${this.url}typesOccupation/list`, {headers: this.headers});
   }
+
+  GetTypesContract():Observable<any>{
+    return this._http.get(`${this.url}typesContract/list`, {headers: this.headers});
+  }
+
+  GetTypesJob():Observable<any>{
+    return this._http.get(`${this.url}typesJob/list`, {headers: this.headers});
+  }
+
+  GetHeadquarters():Observable<any>{
+    return this._http.get(`${this.url}headquarters/list`, {headers: this.headers});
+  }
+
+  GetTypesRole():Observable<any>{
+    return this._http.get(`${this.url}/typesRole/list`, {headers: this.headers});
+  }
 }

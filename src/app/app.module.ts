@@ -29,6 +29,7 @@ import { DetailsAssociateComponent } from './components/associate/details-associ
 import { PersonalInformationsComponent } from './components/associate/informations/personal-informations/personal-informations.component';
 import { LocationInformationsComponent } from './components/associate/informations/location-informations/location-informations.component';
 import { EconomicActivityComponent } from './components/associate/informations/economic-activity/economic-activity.component';
+import { JobInformationsComponent } from './components/associate/informations/job-informations/job-informations.component';
 
 
 
@@ -45,7 +46,8 @@ import { EconomicActivityComponent } from './components/associate/informations/e
     DetailsAssociateComponent,
     PersonalInformationsComponent,
     LocationInformationsComponent,
-    EconomicActivityComponent
+    JobInformationsComponent,
+    EconomicActivityComponent,
   ],
   imports: [
     BrowserModule,
