@@ -27,7 +27,7 @@
             </div>
             <div class="col-3 indev-input">
                 <h5>No. IDENTIFICACIÓN</h5>
-                <input type="text" name="inputNumberIdentity" #number_identity = "ngModel" [(ngModel)] ="associate.number_identity" pInputText class="p-inputtext-md" required>
+                <input type="text" name="inputNumberIdentity" #number_identity = "ngModel" [(ngModel)] ="associate.number_identity" pInputText class="p-inputtext-md" [disabled]="true" required>
                 <small *ngIf = "number_identity.invalid || (number_identity.touched && number_identity.invalid)" class="text-danger"><strong>El campo no es valido.</strong></small>     
             </div>
             <div class="col-3 indev-input">
@@ -38,7 +38,7 @@
             </div>
             <div class="col-3 indev-input">
                 <h5>CIUDAD DE EXPEDICIÓN</h5>
-                <p-dropdown [styleClass]="'indev-p-dropdown'"  [options]="list_locations_expedition" name="inputD_CityExpedition" #d_expedition_city = "ngModel" [(ngModel)] = "personal_informations.d_expedition_city"  optionValue="code" optionLabel="name" [filter]="true" filterBy="name" placeholder="SELECCIONAR..." [disabled]="!list_locations_expedition" [required]="true">
+                <p-dropdown [styleClass]="'indev-p-dropdown'"  [options]="list_locations_expedition" name="inputD_CityExpedition" #d_expedition_city = "ngModel" [(ngModel)] = "personal_informations.d_expedition_city"  optionValue="code" optionLabel="name" [filter]="true" filterBy="name" [disabled]="!list_locations_expedition" [required]="true">
                     <ng-template let-location pTemplate="item">
                         <div>
                             <p>{{location.name}}</p>
@@ -78,7 +78,7 @@
         <div class="form-row mt-3">
             <div class="col-3 indev-input">
                 <h5>CIUDAD DE NACIMIENTO</h5>
-                <p-dropdown [styleClass]="'indev-p-dropdown'"  [options]="list_locations_birth" name="inputCityBirth" #city_birth = "ngModel" [(ngModel)] = "personal_informations.city_birth"  optionValue="code" optionLabel="name" [filter]="true" filterBy="name" placeholder="SELECCIONAR..." 
+                <p-dropdown [styleClass]="'indev-p-dropdown'"  [options]="list_locations_birth" name="inputCityBirth" #city_birth = "ngModel" [(ngModel)] = "personal_informations.city_birth"  optionValue="code" optionLabel="name" [filter]="true" filterBy="name"
                      [disabled]="!list_locations_birth" [required]="true">
                     <ng-template let-location pTemplate="item">
                         <div>

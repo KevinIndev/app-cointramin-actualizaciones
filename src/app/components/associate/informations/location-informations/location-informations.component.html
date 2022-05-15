@@ -15,12 +15,12 @@
             <div class="col-3 indev-input">
                 <h5>DEPARTAMENTO</h5>
                 <p-dropdown [options]="list_departments" [styleClass]="'indev-p-dropdown'" name="inputDepartment" #department = "ngModel" [(ngModel)]="location_information.department" optionLabel="name" optionValue="code" 
-                    (onChange)="GetLocations(department.value,'locations')" placeholder="SELECCIONAR..." [disabled]="!list_departments" [required]="true"></p-dropdown>     
+                    (onChange)="GetLocations(location_information.department,'locations')" placeholder="SELECCIONAR..." [disabled]="!list_departments" [required]="true"></p-dropdown>     
                     <small *ngIf = "department.invalid || (department.touched && department.invalid)" class="text-danger"><strong>El campo no es valido.</strong></small>
             </div>
             <div class="col-3 indev-input">
                 <h5>CIUDAD</h5>
-                <p-dropdown [styleClass]="'indev-p-dropdown'"  [options]="list_locations" name="inputCity" #city = "ngModel" [(ngModel)]="location_information.city"  optionValue="code" optionLabel="name" [filter]="true" filterBy="name" placeholder="SELECCIONAR..." [disabled]="false" [required]="true">
+                <p-dropdown [styleClass]="'indev-p-dropdown'"  [options]="list_locations" name="inputCity" #city = "ngModel" [(ngModel)]="location_information.city"  optionValue="code" optionLabel="name" [filter]="true" filterBy="name" [disabled]="!list_locations" [required]="true">
                     <ng-template let-location pTemplate="item">
                         <div>
                             <p>{{location.name}}</p>
@@ -67,12 +67,12 @@
             <div class="col-3 indev-input">
                 <h5>DEPARTAMENTO</h5>
                 <p-dropdown [options]="list_departments" [styleClass]="'indev-p-dropdown'" name="inputDepartmentWork" #department_work = "ngModel" [(ngModel)]="location_information.department_work" optionLabel="name" optionValue="code" 
-                    (onChange)="GetLocations(department_work.value, 'locations_work')" placeholder="SELECCIONAR..." [disabled]="!list_departments" [required]="true"></p-dropdown>     
+                    (onChange)="GetLocations(location_information.department_work, 'locations_work')" placeholder="SELECCIONAR..." [disabled]="!list_departments" [required]="true"></p-dropdown>     
                     <small *ngIf = "department_work.invalid || (department_work.touched && department.invalid)" class="text-danger"><strong>El campo no es valido.</strong></small>
             </div>
             <div class="col-3 indev-input">
                 <h5>CIUDAD</h5>
-                <p-dropdown [styleClass]="'indev-p-dropdown'"  [options]="list_locations_work" name="inputCityWork" #city_work = "ngModel" [(ngModel)]="location_information.city_work"  optionValue="code" optionLabel="name" [filter]="true" filterBy="name" placeholder="SELECCIONAR..." [disabled]="!list_locations_work" [required]="true">
+                <p-dropdown [styleClass]="'indev-p-dropdown'"  [options]="list_locations_work" name="inputCityWork" #city_work = "ngModel" [(ngModel)]="location_information.city_work"  optionValue="code" optionLabel="name" [filter]="true" filterBy="name" [disabled]="!list_locations_work" [required]="true">
                     <ng-template let-location pTemplate="item">
                         <div>
                             <p>{{location.name}}</p>
