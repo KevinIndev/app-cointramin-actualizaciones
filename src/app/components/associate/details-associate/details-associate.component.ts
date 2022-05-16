@@ -24,6 +24,7 @@ export class DetailsAssociateComponent implements OnInit {
       {label: 'Datos conyuge', icon: 'pi pi-fw pi-users', routerLink:['conyuge-informations']},
       {label: 'Referencias', icon: 'pi pi-fw pi-id-card', routerLink:['references-informations']},
       {label: 'Beneficiarios', icon: 'pi pi-fw pi-cog', routerLink:['dependents-informations']},
+      {label: 'Informacion financiera', icon: 'pi pi-fw pi-cog', routerLink:['financial-informations']},
       {label: 'Settings', icon: 'pi pi-fw pi-cog'}
   ];
   this.activeItem = this.menu_items[2];

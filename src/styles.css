@@ -34,7 +34,7 @@ html, body{
     color: #ffffff;
 }
 
-.indev-input input, .indev-input .indev-p-dropdown{
+.indev-input input, .indev-input .indev-p-dropdown {
     width: 100%;
     background-color: #f8f6f6 !important;
     border-color: 1px solid #949494 !important;
@@ -43,6 +43,7 @@ html, body{
 
 .indev-input h5{
     color: #242424 !important;
+    font-size: 10pt !important;
 }
 
 

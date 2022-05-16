@@ -17,6 +17,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import {ToastModule} from 'primeng/toast';
 import {TabMenuModule} from 'primeng/tabmenu';
 import {ConfirmPopupModule} from 'primeng/confirmpopup';
+import {InputNumberModule} from 'primeng/inputnumber';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,6 +34,9 @@ import { JobInformationsComponent } from './components/associate/informations/jo
 import { ConyugeInformationsComponent } from './components/associate/informations/conyuge-informations/conyuge-informations.component';
 import { ReferencesInformationsComponent } from './components/associate/informations/references-informations/references-informations.component';
 import { DependentsInformationsComponent } from './components/associate/informations/dependents-informations/dependents-informations.component';
+import { FinancialInformationsComponent } from './components/associate/informations/financial-informations/financial-informations.component';
+import { IncomesInformationsComponent } from './components/associate/informations/financial-informations/incomes-informations/incomes-informations.component';
+
 
 
 
@@ -54,6 +58,8 @@ import { DependentsInformationsComponent } from './components/associate/informat
     ConyugeInformationsComponent,
     ReferencesInformationsComponent,
     DependentsInformationsComponent,
+    FinancialInformationsComponent,
+    IncomesInformationsComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,7 +79,8 @@ import { DependentsInformationsComponent } from './components/associate/informat
     DropdownModule,
     ToastModule,
     TabMenuModule,
-    ConfirmPopupModule
+    ConfirmPopupModule,
+    InputNumberModule
   ],
   providers: [],
   bootstrap: [AppComponent]

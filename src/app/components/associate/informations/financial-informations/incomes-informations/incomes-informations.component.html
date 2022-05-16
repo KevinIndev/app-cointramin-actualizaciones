@@ -1,0 +1,41 @@
+<p-toast></p-toast>
+<div class="container-fluid">
+    <form #frmIncomesInformations="ngForm" (ngSubmit)="OnSubmit()">
+        <div class="form-row mb-3">
+            <div class="col-3 indev-input">
+                <h5>FIJOS (Sueldo, Honorarios)</h5>
+                <p-inputNumber name="inputFixedActivity" #fixed_activity="ngModel" [(ngModel)]="incomes_informations.fixed_activity" (onBlur)="UpdateTotal(incomes_informations)" [required]="true"></p-inputNumber>
+                <small *ngIf="fixed_activity.invalid || (fixed_activity.invalid && fixed_activity.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+            <div class="col-2 indev-input">
+                <h5>NEGOCIOS</h5>
+                <p-inputNumber name="inputBusiness" #business="ngModel" [(ngModel)]="incomes_informations.business" (onBlur)="UpdateTotal(incomes_informations)" [required]="true"></p-inputNumber>
+                <small *ngIf="business.invalid || (business.invalid && business.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+            <div class="col-2 indev-input">
+                <h5>PENSIÓN</h5>
+                <p-inputNumber name="inputPension" #pension="ngModel" [(ngModel)]="incomes_informations.pension" (onBlur)="UpdateTotal(incomes_informations)" [required]="true"></p-inputNumber>
+                <small *ngIf="pension.invalid || (pension.invalid && pension.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+            <div class="col-2 indev-input">
+                <h5>ARRIENDO</h5>
+                <p-inputNumber name="inputRents" #rents="ngModel" [(ngModel)]="incomes_informations.rents" (onBlur)="UpdateTotal(incomes_informations)" [required]="true"></p-inputNumber>
+                <small *ngIf="rents.invalid || (rents.invalid && rents.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+            <div class="col-3 indev-input">
+                <h5>OTROS</h5>
+                <p-inputNumber  name="inputOthers" #others="ngModel" [(ngModel)]="incomes_informations.others" (onBlur)="UpdateTotal(incomes_informations)" [required]="true"></p-inputNumber>
+                <small *ngIf="others.invalid || (others.invalid && others.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+        </div>
+        <div class="form-row justify-content-bewteen">
+            <div class="col">
+                <h5>Total ingresos:</h5>
+                <p>{{total_incomes | currency}}</p>
+            </div>
+            <div class="col-auto align-self-end">
+                <p-button type="submit" label="Guardar cambios" [styleClass]="'bg-success border-0'" [disabled]="frmIncomesInformations.invalid === true"></p-button>
+            </div>
+        </div>
+    </form>
+</div>
