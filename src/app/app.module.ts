@@ -32,6 +32,7 @@ import { EconomicActivityComponent } from './components/associate/informations/e
 import { JobInformationsComponent } from './components/associate/informations/job-informations/job-informations.component';
 import { ConyugeInformationsComponent } from './components/associate/informations/conyuge-informations/conyuge-informations.component';
 import { ReferencesInformationsComponent } from './components/associate/informations/references-informations/references-informations.component';
+import { DependentsInformationsComponent } from './components/associate/informations/dependents-informations/dependents-informations.component';
 
 
 
@@ -52,6 +53,7 @@ import { ReferencesInformationsComponent } from './components/associate/informat
     EconomicActivityComponent,
     ConyugeInformationsComponent,
     ReferencesInformationsComponent,
+    DependentsInformationsComponent,
   ],
   imports: [
     BrowserModule,

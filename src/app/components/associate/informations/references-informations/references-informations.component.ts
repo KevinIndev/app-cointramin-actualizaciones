@@ -54,6 +54,7 @@ export class ReferencesInformationsComponent implements OnInit {
         if(response.status && response.status === response_standars.success){
           this.list_references_informations = response.data;
         } else {
+          this.list_references_informations = response.data;
           this._message_service.add(map_message_service(response_standars.warning, response.message));
         }
       },

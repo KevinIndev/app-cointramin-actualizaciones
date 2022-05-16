@@ -14,7 +14,7 @@ export class DetailsAssociateComponent implements OnInit {
   birth_date: Date | undefined;
 
   public menu_items: MenuItem[];
-
+  public activeItem: MenuItem;
   constructor() {
     this.menu_items = [
       {label: 'Datos personales', icon: 'pi pi-fw pi-user', routerLink: ['personal-informations']},
@@ -23,9 +23,10 @@ export class DetailsAssociateComponent implements OnInit {
       {label: 'Informacion empresa', icon: 'pi pi-fw pi-building', routerLink:['job-informations']},
       {label: 'Datos conyuge', icon: 'pi pi-fw pi-users', routerLink:['conyuge-informations']},
       {label: 'Referencias', icon: 'pi pi-fw pi-id-card', routerLink:['references-informations']},
-      {label: 'Settings', icon: 'pi pi-fw pi-cog'},
+      {label: 'Beneficiarios', icon: 'pi pi-fw pi-cog', routerLink:['dependents-informations']},
       {label: 'Settings', icon: 'pi pi-fw pi-cog'}
   ];
+  this.activeItem = this.menu_items[2];
   }
 
   ngOnInit(): void {
