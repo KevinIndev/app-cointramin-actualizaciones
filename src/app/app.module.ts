@@ -18,6 +18,7 @@ import {ToastModule} from 'primeng/toast';
 import {TabMenuModule} from 'primeng/tabmenu';
 import {ConfirmPopupModule} from 'primeng/confirmpopup';
 import {InputNumberModule} from 'primeng/inputnumber';
+import {InputTextareaModule} from 'primeng/inputtextarea';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,6 +38,8 @@ import { DependentsInformationsComponent } from './components/associate/informat
 import { FinancialInformationsComponent } from './components/associate/informations/financial-informations/financial-informations.component';
 import { IncomesInformationsComponent } from './components/associate/informations/financial-informations/incomes-informations/incomes-informations.component';
 import { ExpensesInformationsComponent } from './components/associate/informations/financial-informations/expenses-informations/expenses-informations.component';
+import { AssetsInformationComponent } from './components/associate/informations/financial-informations/assets-information/assets-information.component';
+import { PassivesInformationsComponent } from './components/associate/informations/financial-informations/passives-informations/passives-informations.component';
 
 
 
@@ -62,6 +65,8 @@ import { ExpensesInformationsComponent } from './components/associate/informatio
     FinancialInformationsComponent,
     IncomesInformationsComponent,
     ExpensesInformationsComponent,
+    AssetsInformationComponent,
+    PassivesInformationsComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,7 +87,8 @@ import { ExpensesInformationsComponent } from './components/associate/informatio
     ToastModule,
     TabMenuModule,
     ConfirmPopupModule,
-    InputNumberModule
+    InputNumberModule,
+    InputTextareaModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,96 @@
+<p-toast></p-toast>
+<p-confirmPopup></p-confirmPopup>
+<div class="container-fluid">
+    <div class="row mb-2">
+        <div class="col">
+            <h5><strong>DESCRIPCION DE ACTIVOS</strong></h5>
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-sm indev-bg-success" data-bs-toggle="modal" data-bs-target="#frmNewAssetModal">
+                <i class="pi pi-plus"></i>
+                <span class="px-2"><strong>Nuevo</strong></span>
+            </button>
+        </div>
+    </div>
+    <div class="row" *ngIf="message_list">
+        <div class="col-12">
+            <small><strong>{{message_list}}</strong></small>
+        </div>
+    </div>
+    <div class="row" *ngIf="!message_list">
+        <div class="col-12">
+            <p-table [value]="list_assets_informations" styleClass="p-datatable-sm" responsiveLayout="scroll">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>T. Activo</th>
+                        <th>Descripcion (Dirreción, entidad o marca)</th>
+                        <th>Valor comercial</th>
+                        <th>Hipoteca</th>
+                        <th style="width: 2rem;"></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-asset>
+                    <tr>
+                        <td>{{asset.type_asset}}</td>
+                        <td>{{asset.description}}</td>
+                        <td>{{asset.commercial_value | currency}}</td>
+                        <td>{{asset.isMortgage}}</td>
+                        <td>
+                            <button class="btn btn-sm rounded-circle btn-danger" (click)="confirm_delete($event,asset)">
+                                <i class="pi pi-times"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="frmNewAssetModal" tabindex="-1" aria-labelledby="frmNewAssetModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="frmNewAssetModalLabel">Nuevo activo</h5>
+        </div>
+        <div class="modal-body">
+            <p-toast key="toast_modal"></p-toast>
+          <form #frmNewAsset="ngForm" class="px-3">
+              <div class="form-row mb-3">
+                  <div class="col-12 indev-input">
+                      <h5>TIPO DE ACTIVO</h5>
+                      <input type="text" pInputText name="inputTypeAsset" #type_asset="ngModel" [(ngModel)]="assets_information.type_asset" required>
+                      <small *ngIf="type_asset.invalid || (type_asset.invalid && type_asset.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+                  </div>
+              </div>
+              <div class="form-row mb-3">
+                <div class="col-12 indev-input">
+                    <h5>DESCRIPCIÓN DEL ACTIVO</h5>
+                    <textarea [rows]="3" [cols]="30" pInputTextarea  name="inputDescription" #description="ngModel" [(ngModel)]="assets_information.description" [autoResize]="true" required></textarea>
+                    <small *ngIf="description.invalid || (description.invalid && description.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-6 indev-input">
+                    <h5>VALOR COMERCIAL</h5>
+                    <p-inputNumber name="inputCommercialValue" #commercial_value="ngModel" [(ngModel)]="assets_information.commercial_value" [required]="true"></p-inputNumber>
+                    <small *ngIf="commercial_value.invalid || (commercial_value.invalid && commercial_value.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+                </div>
+                <div class="col-6 indev-input">
+                    <h5>HIPOTECA / PRENDA</h5>
+                    <p-dropdown [options]="[{code: 'N', concept: 'NO'},{code:'S',concept:'SI'}]" [styleClass]="'indev-p-dropdown'" name="inputIsMortgage" #isMortgage="ngModel" [(ngModel)]="assets_information.isMortgage"
+                      optionLabel="concept" optionValue="code" [required]="true"></p-dropdown>
+                    <small *ngIf="isMortgage.invalid || (isMortgage.invalid && isMortgage.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+                </div>
+              </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <p-button icon="pi pi-times" [styleClass]="'p-button-danger p-button-sm'" data-bs-dismiss="modal"></p-button>
+          <button pButton label="Guardar" type="button" (click)="OnSubmit()" icon="pi pi-check" class="indev-bg-success border-0 p-button-sm" iconPos="left" [disabled]="frmNewAsset.invalid"></button>
+        </div>
+      </div>
+    </div>
+  </div>
