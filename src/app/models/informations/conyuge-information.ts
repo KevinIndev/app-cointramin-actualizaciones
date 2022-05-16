@@ -5,8 +5,8 @@ export class ConyugeInformation {
     public names!: string;
     public d_expedition_city!: string;
     public d_expedition_department!: string;
-    public d_expedition_date!: string;
-    public birth_date!: string;
+    public d_expedition_date!: Date;
+    public birth_date!: Date;
     public residence_adress!: string;
     public city!: string;
     public department!: string;

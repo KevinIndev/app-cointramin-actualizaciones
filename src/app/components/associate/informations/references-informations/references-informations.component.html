@@ -1,0 +1,114 @@
+<p-toast></p-toast>
+<p-confirmPopup></p-confirmPopup>
+<div class="container-fluid">
+    <div>
+        <div class="row justify-content-between align-items-center">
+            <div class="col-auto">
+                <h5>LISTA DE REFERENCIAS</h5>
+            </div>
+            <div class="col-auto">
+                <p-button label="Nuevo" icon="pi pi-plus" styleClass="p-button-success p-button-sm" data-bs-toggle="modal" data-bs-target="#FrmReferenceModal"></p-button>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <p-table [value]="list_references_informations" styleClass="p-datatable-sm" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Tipo</th>
+                <th>Nombres</th>
+                <th>Direccion</th>
+                <th>Departamento</th>
+                <th>Municipio</th>
+                <th>Tel/Celular</th>
+                <th>Parentesco</th>
+                <th style="width:4rem"></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-reference>
+            <tr style="font-size: 8pt;">
+                <td>{{reference.type_reference}}</td>
+                <td>{{reference.names}}</td>
+                <td>{{reference.residence_adress}}</td>
+                <td>{{reference.department}}</td>
+                <td>{{reference.city}}</td>
+                <td>{{reference.number_phone}}</td>
+                <td>{{reference.relationship}}</td>
+                <td class="d-flex">
+                    <button pButton type="button" icon="pi pi-trash" class="p-button-danger p-button-rounded ml-2 p-button-sm" (click)="Confirm($event,reference.id, reference.associate_id)"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="FrmReferenceModal" tabindex="-1" aria-labelledby="FrmReferenceModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="FrmReferenceModalLabel">Nueva referencia</h5>
+        </div>
+        <div class="modal-body">
+            <p-toast key="onModal"></p-toast>
+            <form #frmNewReference="ngForm" (ngSubmit)="OnSubmit()">
+                <div class="form-row">
+                    <div class="col-4 indev-input">
+                        <h5>REFERENCIA</h5>
+                        <p-dropdown [options]="list_types_references" [styleClass]="'indev-p-dropdown'" name="inputTypeReference" #type_reference="ngModel" [(ngModel)]="reference_information.type_reference"
+                            optionLabel="concept" optionValue="code" [disabled]="!list_types_references" [required]="true"></p-dropdown>
+                        <small *ngIf="type_reference.invalid || (type_reference.invalid && type_reference.touched)" class="text-danger"><strong>El campo no es correcto.</strong></small>
+                    </div>
+                    <div class="col-8 indev-input">
+                        <h5>NOMBRE COMPLETO</h5>
+                        <input type="text" pInputText name="inputNames" #names="ngModel" [(ngModel)]="reference_information.names" required>
+                        <small *ngIf="names.invalid || (names.invalid && names.touched)" class="text-danger"><strong>El campo no es correcto.</strong></small>
+                    </div>
+                </div>
+                <div class="form-row mb-3">
+                    <div class="col-6 indev-input">
+                        <h5>DIRECCIÓN</h5>
+                        <input type="text" pInputText name="inputResidenceAdress" #residence_adress="ngModel" [(ngModel)]="reference_information.residence_adress" required>
+                        <small *ngIf="residence_adress.invalid || (residence_adress.invalid && residence_adress.touched)" class="text-danger"><strong>El campo no es correcto.</strong></small>
+                    </div>
+                    <div class="col-3 indev-input">
+                        <h5>DEPARTAMENTO</h5>
+                        <p-dropdown [options]="list_departments" [styleClass]="'indev-p-dropdown'" name="inputDepartment" #department="ngModel" [(ngModel)]="reference_information.department"
+                            (onChange)="GetListLocations(reference_information.department)" optionLabel="name" optionValue="code" [disabled]="!list_departments" placeholder="SELECCIONAR..." [required]="true"></p-dropdown>
+                        <small *ngIf="department.invalid || (department.invalid && department.touched)" class="text-danger"><strong>El campo no es correcto.</strong></small>
+                    </div>
+                    <div class="col-3 indev-input">
+                        <h5>CIUDAD</h5>
+                            <p-dropdown [styleClass]="'indev-p-dropdown'"  [options]="list_locations" name="inputCity" #city = "ngModel" [(ngModel)]="reference_information.city"  
+                                optionValue="code" optionLabel="name" [filter]="true" filterBy="name" [disabled]="!list_locations" [required]="true">
+                                <ng-template let-location pTemplate="item">
+                                    <div>
+                                        <p>{{location.name}}</p>
+                                    </div>
+                                </ng-template>
+                            </p-dropdown>
+                            <small *ngIf="city.invalid || (city.touched && city.invalid)" class="text-danger"><strong>El campo no es valido.</strong></small>
+                    </div>
+                </div>
+                <div class="form-row mb-3">
+                    <div class="col-3 indev-input">
+                        <h5>TELEFONO</h5>
+                        <input type="text" pInputText name="inputNumberPhone" #number_phone="ngModel" [(ngModel)]="reference_information.number_phone"  pattern="[0-9]+" required>
+                        <small *ngIf="number_phone.invalid || (number_phone.invalid && number_phone.touched)" class="text-danger"><strong>El campo no es correcto.</strong></small>
+                    </div>
+                    <div class="col-3 indev-input">
+                        <h5>PARENTESCO</h5>
+                        <input type="text" pInputText name="inputRelationship" #relationship="ngModel" [(ngModel)]="reference_information.relationship" required>
+                        <small *ngIf="relationship.invalid || (relationship.invalid && relationship.touched)" class="text-danger"><strong>El campo no es correcto.</strong></small>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button pButton type="button" icon="pi pi-times" class="p-button-danger mr-2" data-bs-dismiss="modal" ></button>
+            <button pButton type="button" label="Guardar" icon="pi pi-plus" class="p-button-success" (click)="OnSubmit()" [disabled]="frmNewReference.invalid"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

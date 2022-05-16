@@ -22,6 +22,8 @@ export class DetailsAssociateComponent implements OnInit {
       {label:'Actividad economica', icon: 'pi pi-fw pi-briefcase', routerLink:['economic-activity']},
       {label: 'Informacion empresa', icon: 'pi pi-fw pi-building', routerLink:['job-informations']},
       {label: 'Datos conyuge', icon: 'pi pi-fw pi-users', routerLink:['conyuge-informations']},
+      {label: 'Referencias', icon: 'pi pi-fw pi-id-card', routerLink:['references-informations']},
+      {label: 'Settings', icon: 'pi pi-fw pi-cog'},
       {label: 'Settings', icon: 'pi pi-fw pi-cog'}
   ];
   }

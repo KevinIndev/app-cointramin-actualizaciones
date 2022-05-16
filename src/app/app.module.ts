@@ -16,7 +16,7 @@ import {TabViewModule} from 'primeng/tabview';
 import { DropdownModule } from 'primeng/dropdown';
 import {ToastModule} from 'primeng/toast';
 import {TabMenuModule} from 'primeng/tabmenu';
-
+import {ConfirmPopupModule} from 'primeng/confirmpopup';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,6 +31,7 @@ import { LocationInformationsComponent } from './components/associate/informatio
 import { EconomicActivityComponent } from './components/associate/informations/economic-activity/economic-activity.component';
 import { JobInformationsComponent } from './components/associate/informations/job-informations/job-informations.component';
 import { ConyugeInformationsComponent } from './components/associate/informations/conyuge-informations/conyuge-informations.component';
+import { ReferencesInformationsComponent } from './components/associate/informations/references-informations/references-informations.component';
 
 
 
@@ -50,6 +51,7 @@ import { ConyugeInformationsComponent } from './components/associate/information
     JobInformationsComponent,
     EconomicActivityComponent,
     ConyugeInformationsComponent,
+    ReferencesInformationsComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,7 +70,8 @@ import { ConyugeInformationsComponent } from './components/associate/information
     TabViewModule,
     DropdownModule,
     ToastModule,
-    TabMenuModule
+    TabMenuModule,
+    ConfirmPopupModule
   ],
   providers: [],
   bootstrap: [AppComponent]

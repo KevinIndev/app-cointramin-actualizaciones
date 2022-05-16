@@ -6,6 +6,7 @@ import { EconomicActivityComponent } from './components/associate/informations/e
 import { JobInformationsComponent } from './components/associate/informations/job-informations/job-informations.component';
 import { LocationInformationsComponent } from './components/associate/informations/location-informations/location-informations.component';
 import { PersonalInformationsComponent } from './components/associate/informations/personal-informations/personal-informations.component';
+import { ReferencesInformationsComponent } from './components/associate/informations/references-informations/references-informations.component';
 import { ListAssociateComponent } from './components/associate/list-associate/list-associate.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { SessionGuard } from './guards/session.guard';
@@ -21,7 +22,8 @@ const routes: Routes = [
       {path:'location-informations', component:LocationInformationsComponent},
       {path:'economic-activity', component:EconomicActivityComponent},
       {path:'job-informations', component:JobInformationsComponent},
-      {path: 'conyuge-informations', component:ConyugeInformationsComponent}
+      {path: 'conyuge-informations', component:ConyugeInformationsComponent},
+      {path:'references-informations', component:ReferencesInformationsComponent}
     ]}
   ]}
 ];

@@ -73,6 +73,10 @@ export class UtilitiesService {
   }
 
   GetTypesRole():Observable<any>{
-    return this._http.get(`${this.url}/typesRole/list`, {headers: this.headers});
+    return this._http.get(`${this.url}typesRole/list`, {headers: this.headers});
+  }
+
+  GetTypesReference():Observable<any>{
+    return this._http.get(`${this.url}typesReference/list`, {headers: this.headers});
   }
 }
