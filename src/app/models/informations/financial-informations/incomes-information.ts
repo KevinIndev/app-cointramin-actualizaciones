@@ -26,6 +26,7 @@ export class IncomesInformation {
      * @param params Obtiene la informacion de los ingresos para su respectivo mapeado.
      */
     public SetValues(params:IncomesInformation){
+        this.associate_id = params.associate_id;
         this.fixed_activity = params.fixed_activity;
         this.business = params.business;
         this.pension = params.pension;
@@ -40,8 +41,7 @@ export class IncomesInformation {
      */
     private  CalculateTotal(): number{
         const suma = this.fixed_activity + this.business + this.pension + this.rents + this.others;
-        this.total = suma;
-        return this.total;
+        return suma;
     }
 
     public GetTotal():number{

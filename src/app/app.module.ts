@@ -36,6 +36,7 @@ import { ReferencesInformationsComponent } from './components/associate/informat
 import { DependentsInformationsComponent } from './components/associate/informations/dependents-informations/dependents-informations.component';
 import { FinancialInformationsComponent } from './components/associate/informations/financial-informations/financial-informations.component';
 import { IncomesInformationsComponent } from './components/associate/informations/financial-informations/incomes-informations/incomes-informations.component';
+import { ExpensesInformationsComponent } from './components/associate/informations/financial-informations/expenses-informations/expenses-informations.component';
 
 
 
@@ -60,6 +61,7 @@ import { IncomesInformationsComponent } from './components/associate/information
     DependentsInformationsComponent,
     FinancialInformationsComponent,
     IncomesInformationsComponent,
+    ExpensesInformationsComponent,
   ],
   imports: [
     BrowserModule,

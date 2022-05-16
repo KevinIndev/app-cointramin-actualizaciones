@@ -1,0 +1,41 @@
+<p-toast></p-toast>
+<div class="container-fluid">
+    <form #frmIncomesInformations="ngForm" (ngSubmit)="OnSubmit()">
+        <div class="form-row mb-3">
+            <div class="col-3 indev-input">
+                <h5>PAGOS (Arriendo, Credito)</h5>
+                <p-inputNumber name="inputPayments" #payments="ngModel" [(ngModel)]="expenses_information.payments" (onBlur)="UpdateTotal(expenses_information)" [required]="true"></p-inputNumber>
+                <small *ngIf="payments.invalid || (payments.invalid && payments.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+            <div class="col-2 indev-input">
+                <h5>G. FAMILIARES</h5>
+                <p-inputNumber name="inputFamilyExpenses" #family_expenses="ngModel" [(ngModel)]="expenses_information.family_expenses" (onBlur)="UpdateTotal(expenses_information)" [required]="true"></p-inputNumber>
+                <small *ngIf="family_expenses.invalid || (family_expenses.invalid && family_expenses.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+            <div class="col-2 indev-input">
+                <h5>G. PERSONALES</h5>
+                <p-inputNumber name="inputPersonalExpenses" #personal_expenses="ngModel" [(ngModel)]="expenses_information.personal_expenses" (onBlur)="UpdateTotal(expenses_information)" [required]="true"></p-inputNumber>
+                <small *ngIf="personal_expenses.invalid || (personal_expenses.invalid && personal_expenses.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+            <div class="col-3 indev-input">
+                <h5>OBLIGACIÓNES FINANCIERAS</h5>
+                <p-inputNumber name="inputFinancialObligations" #financial_obligations="ngModel" [(ngModel)]="expenses_information.financial_obligations" (onBlur)="UpdateTotal(expenses_information)" [required]="true"></p-inputNumber>
+                <small *ngIf="financial_obligations.invalid || (financial_obligations.invalid && financial_obligations.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+            <div class="col-2 indev-input">
+                <h5>OTROS GASTOS</h5>
+                <p-inputNumber  name="inputOtherExpenses" #other_expenses="ngModel" [(ngModel)]="expenses_information.other_expenses" (onBlur)="UpdateTotal(expenses_information)" [required]="true"></p-inputNumber>
+                <small *ngIf="other_expenses.invalid || (other_expenses.invalid && other_expenses.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+            </div>
+        </div>
+        <div class="form-row justify-content-bewteen">
+            <div class="col">
+                <h5>Total egresos:</h5>
+                <p>{{total_expenses | currency}}</p>
+            </div>
+            <div class="col-auto align-self-end">
+                <p-button type="submit" label="Guardar cambios" [styleClass]="'bg-success border-0'" [disabled]="frmIncomesInformations.invalid === true"></p-button>
+            </div>
+        </div>
+    </form>
+</div>
