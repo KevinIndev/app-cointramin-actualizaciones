@@ -106,5 +106,5 @@ export class AssetsInformationComponent implements OnInit {
             this.DeleteAssets(params);
         }
     });
-}
+  }
 }

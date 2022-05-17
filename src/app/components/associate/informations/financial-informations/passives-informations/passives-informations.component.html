@@ -1,1 +1,94 @@
-<p>passives-informations works!</p>
+<p-toast></p-toast>
+<p-confirmPopup></p-confirmPopup>
+<div class="container-fluid">
+    <div class="row mb-2">
+        <div class="col">
+            <h5><strong>DESCRIPCION DEL PASIVO</strong></h5>
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-sm indev-bg-success" data-bs-toggle="modal" data-bs-target="#frmNewPassiveModal">
+                <i class="pi pi-plus"></i>
+                <span class="px-2"><strong>Nuevo</strong></span>
+            </button>
+        </div>
+    </div>
+    <div class="row" *ngIf="message_list">
+        <div class="col-12">
+            <small><strong>{{message_list}}</strong></small>
+        </div>
+    </div>
+    <div class="row" *ngIf="!message_list">
+        <div class="col-12">
+            <p-table [value]="list_passives_informations" styleClass="p-datatable-sm" responsiveLayout="scroll">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>DEUDA</th>
+                        <th>CANTIDAD</th>
+                        <th>VALOR</th>
+                        <th>ENTIDAD</th>
+                        <th style="width: 2rem;"></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-passive>
+                    <tr>
+                        <td>{{passive.debt}}</td>
+                        <td>{{passive.quantity}}</td>
+                        <td>{{passive.value_passive | currency}}</td>
+                        <td>{{passive.entity_passive}}</td>
+                        <td>
+                            <button class="btn btn-sm rounded-circle btn-danger" (click)="confirm_delete($event,passive)">
+                                <i class="pi pi-times"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="frmNewPassiveModal" tabindex="-1" aria-labelledby="frmNewPassiveModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="frmNewPassiveModalLabel">Nuevo passivo</h5>
+        </div>
+        <div class="modal-body">
+            <p-toast key="toast_modal"></p-toast>
+          <form #frmNewPassive="ngForm" class="px-3">
+              <div class="form-row mb-3">
+                  <div class="col-12 indev-input">
+                      <h5>DEUDA</h5>
+                      <input type="text" pInputText name="inputDebt" #debt="ngModel" [(ngModel)]="passives_information.debt" required>
+                      <small *ngIf="debt.invalid || (debt.invalid && debt.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+                  </div>
+              </div>
+              <div class="form-row mb-3">
+                <div class="col-12 indev-input">
+                    <h5>CANTIDAD</h5>
+                    <p-inputNumber name="inputQuantity" #quantity="ngModel" [(ngModel)]="passives_information.quantity" [min]="1" [required]="true"></p-inputNumber>
+                    <small *ngIf="quantity.invalid || (quantity.invalid && quantity.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-6 indev-input">
+                    <h5>VALOR</h5>
+                    <p-inputNumber name="inputValuePassive" #value_passive="ngModel" [(ngModel)]="passives_information.value_passive" [min]="0" [required]="true"></p-inputNumber>
+                    <small *ngIf="value_passive.invalid || (value_passive.invalid && value_passive.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+                </div>
+                <div class="col-6 indev-input">
+                    <h5>ENTIDAD</h5>
+                    <input type="text" pInputText name="inputEntityPassive" #entity_passive="ngModel" [(ngModel)]="passives_information.entity_passive" required>
+                    <small *ngIf="entity_passive.invalid || (entity_passive.invalid && entity_passive.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+                </div>
+              </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <p-button icon="pi pi-times" [styleClass]="'p-button-danger p-button-sm'" data-bs-dismiss="modal"></p-button>
+          <button pButton label="Guardar" type="button" (click)="OnSubmit()" icon="pi pi-check" class="indev-bg-success border-0 p-button-sm" iconPos="left" [disabled]="frmNewPassive.invalid"></button>
+        </div>
+      </div>
+    </div>
+  </div>
