@@ -15,7 +15,7 @@
             <div class="col-3 indev-input">
                 <h5>DEPARTAMENTO</h5>
                 <p-dropdown [options]="list_departments" [styleClass]="'indev-p-dropdown'" name="inputDepartment" #department = "ngModel" [(ngModel)]="location_information.department" optionLabel="name" optionValue="code" 
-                    (onChange)="GetLocations(location_information.department,'locations')" placeholder="SELECCIONAR..." [disabled]="!list_departments" [required]="true"></p-dropdown>     
+                    (onChange)="GetLocations(location_information.department,'locations')" [disabled]="!list_departments" [required]="true"></p-dropdown>     
                     <small *ngIf = "department.invalid || (department.touched && department.invalid)" class="text-danger"><strong>El campo no es valido.</strong></small>
             </div>
             <div class="col-3 indev-input">

@@ -32,4 +32,17 @@ export class AssociateService {
   public UpdateData(params_id:string, params_data: Associate):Observable<any>{
     return this._http.put(`${this.url}/list/${params_id}`, params_data, {headers: this.headers});
   }
+
+  getDocumentExport(associate_id:string, optionsExport:any):Observable<ArrayBuffer>{
+    const myDate = new Date();
+    const options = {
+      headers: this.headers,
+      responseType: 'blob' as 'json'
+    };
+    optionsExport.updateDate = `${myDate.getFullYear()}-${myDate.getMonth()}-${myDate.getUTCDate()}`;
+    optionsExport.updateTime = `${myDate.getHours()}:${myDate.getMinutes()}:${myDate.getSeconds()}`;
+    const params = JSON.stringify(optionsExport);
+    
+    return this._http.post<any>(this.url + 'associates/generate-document/' + associate_id, params, options);
+  }
 }

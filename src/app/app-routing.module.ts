@@ -11,12 +11,13 @@ import { PersonalInformationsComponent } from './components/associate/informatio
 import { ReferencesInformationsComponent } from './components/associate/informations/references-informations/references-informations.component';
 import { ListAssociateComponent } from './components/associate/list-associate/list-associate.component';
 import { LoginComponent } from './components/user/login/login.component';
+import { LoginGuard } from './guards/login.guard';
 import { SessionGuard } from './guards/session.guard';
 import { MasterComponent } from './master/master.component';
 
 const routes: Routes = [
   {path:'', redirectTo: '/login', pathMatch: 'full'},
-  {path:'login', component: LoginComponent},
+  {path:'login', component: LoginComponent, canActivate:[LoginGuard]},
   {path:'master', component: MasterComponent, canActivate:[SessionGuard], children: [
     {path:'', component:ListAssociateComponent},
     {path:'associate/details/:id', component:DetailsAssociateComponent,children:[

@@ -26,7 +26,8 @@ export class LocationInformationsComponent implements OnInit {
               private _utilities_service: UtilitiesService,
               private _message_service: MessageService,
               private _activate_route: ActivatedRoute) { 
-              this.location_information = Object();
+              this.location_information = new LocationInformation();
+              this.LoadUtilities();
     }
 
   ngOnInit(): void {
@@ -36,7 +37,6 @@ export class LocationInformationsComponent implements OnInit {
         if(id){
           this.associate_id = id;
           this.GetInformations();
-          this.LoadUtilities();
         } else {
           this._message_service.add(map_message_service(response_standars.warning, 'No se pudo obtener los parametros de navegacion o no existe un ID.'));
         }

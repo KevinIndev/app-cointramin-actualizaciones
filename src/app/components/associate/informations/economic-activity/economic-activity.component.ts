@@ -22,11 +22,11 @@ export class EconomicActivityComponent implements OnInit {
               private _utilities_service: UtilitiesService,
               private _message_service: MessageService,
               private _activated_route: ActivatedRoute) { 
-    this.economic_activity = Object();
+      this.economic_activity = Object();
+      this.GetTypesOccupations();
   }
 
   ngOnInit(): void {
-    this.GetTypesOccupations();
     this._activated_route.parent?.params.subscribe({
       next: (params) => {
         const id = params['id'];
