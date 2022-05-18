@@ -36,6 +36,7 @@ export class ExpensesInformation {
     }
 
     public GetTotal(): number{
+        this.total = this.CalculateTotal();
         return this.total;
     }
 }

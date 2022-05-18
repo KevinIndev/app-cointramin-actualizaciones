@@ -21,6 +21,10 @@ export class AssociateService {
                                    .set('Authorization', this.token)
   }
 
+  public Add(params: Associate):Observable<any>{
+    return this._http.post(`${this.url}/add`, params, {headers: this.headers});
+  }
+  
   public GetList(): Observable<any>{
     return this._http.get(`${this.url}/list`, {headers: this.headers});
   }

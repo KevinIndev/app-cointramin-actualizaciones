@@ -45,6 +45,7 @@ export class IncomesInformation {
     }
 
     public GetTotal():number{
+        this.total = this.CalculateTotal();
         return this.total;
     }
 }

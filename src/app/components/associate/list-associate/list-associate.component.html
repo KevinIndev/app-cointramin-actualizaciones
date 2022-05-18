@@ -1,5 +1,5 @@
+<p-toast></p-toast>
 <div class="container-fluid" *ngIf="list_associates">
-    
     <div class="row">
         <div class="col-12">
             <h4 class="font-primary">
@@ -11,11 +11,11 @@
         <div class="col-auto">
             <span class="p-input-icon-left">
                 <i class="pi pi-search"></i>
-                <input type="text" pInputText name="inputSearch" #inputSearch = "ngModel" [(ngModel)]="params_search" placeholder="Search">         
+                <input type="text" pInputText name="inputSearch" (keypress)="SearchAssociate($event)" #inputSearch = "ngModel" [(ngModel)]="params_search" placeholder="Search">         
             </span>
         </div>
         <div class="col-auto">
-            <button pButton type="button" label="Nuevo" class="p-button-success"></button>
+            <button pButton type="button" label="Nuevo" class="p-button-success" data-bs-toggle="modal" data-bs-target="#frmNewAssociateModal"></button>
         </div>
     </div>
     <div class="card shadow" *ngIf = "true">
@@ -54,3 +54,55 @@
     </div>
 
 </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="frmNewAssociateModal" tabindex="-1" aria-labelledby="frmNewAssociateModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="frmNewAssociateModalLabel">Nuevo asociado</h5>
+        </div>
+        <div class="modal-body">
+            <p-toast key="toast_modal"></p-toast>
+          <form #frmNewAssociate="ngForm">
+            <div class="form-row mb-3">
+                <div class="col-5 indev-input">
+                    <h5>T. IDENTIFICACÓN</h5>
+                    <p-dropdown [options]="list_types_identities" [styleClass]="'indev-p-dropdown'" name="inputTypeIdentity" #type_identity="ngModel" [(ngModel)]="associate.type_identity"
+                        optionLabel="name" optionValue="code" [disabled]="!list_types_identities" [required]="true"></p-dropdown>
+                    <small *ngIf="type_identity.invalid || (type_identity.invalid && type_identity.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+                </div>
+                <div class="col-7 indev-input">
+                    <h5>No. IDENTIFICACÓN</h5>
+                    <input type="text" autocomplete="off" pInputText name="inputNumberIdentity" #number_identity="ngModel" [(ngModel)]="associate.number_identity" required>
+                    <small *ngIf="number_identity.invalid || (number_identity.invalid && number_identity.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+                </div>
+            </div>
+            <div class="form-row mb-3">
+                <div class="col-12 indev-input">
+                    <h5>NOMBRES COMPLETO</h5>
+                    <input type="text" autocomplete="off" pInputText name="inputNames" #names="ngModel" [(ngModel)]="associate.names" required>
+                    <small *ngIf="names.invalid || (names.invalid && names.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-6 indev-input">
+                    <h5>PRIMER APELLIDO</h5>
+                    <input type="text" autocomplete="off" pInputText name="inputSurname1" #surname_1="ngModel" [(ngModel)]="associate.surname_1" required>
+                    <small *ngIf="surname_1.invalid || (surname_1.invalid && surname_1.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+                </div>
+                <div class="col-6 indev-input">
+                    <h5>SEGUNDO APELLIDO</h5>
+                    <input type="text" autocomplete="off" pInputText name="inputSurname2" #surname_2="ngModel" [(ngModel)]="associate.surname_2">
+                    <small *ngIf="surname_2.invalid || (surname_2.invalid && surname_2.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
+                </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button pButton type="button" class="p-button-danger" icon="pi pi-times" iconPos="left" data-bs-dismiss="modal"></button>
+          <button pButton type="submit" label="Registrar" (click)="OnSubmit()" class="indev-bg-success mx-2 border-0" icon="pi pi-plus" iconPos="left"></button>
+        </div>
+      </div>
+    </div>
+  </div>

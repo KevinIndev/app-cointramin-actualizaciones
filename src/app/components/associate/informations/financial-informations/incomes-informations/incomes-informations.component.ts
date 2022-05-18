@@ -60,6 +60,7 @@ export class IncomesInformationsComponent implements OnInit {
 
   OnSubmit(){
     this.incomes_informations.associate_id = this.associate_id;
+    console.log(this.incomes_informations.GetTotal());
     this._incomes_informations_service.AddInformations(this.incomes_informations).subscribe({
       next: (response) => {
         this._message_service.add(map_message_service(response.status, response.message));
@@ -73,9 +74,7 @@ export class IncomesInformationsComponent implements OnInit {
 
   UpdateTotal(params:IncomesInformation){
     try {
-      const newIncomes = new IncomesInformation();
-      newIncomes.SetValues(params);
-      this.total_incomes = newIncomes.GetTotal();
+      this.total_incomes = params.GetTotal();
     } catch (error) {
       this._message_service.add(map_message_service(response_standars.warning, 'No se puede calcular el total de los ingresos. Verifique su informacion'));
       this.total_incomes = 0;

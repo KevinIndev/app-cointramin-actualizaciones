@@ -73,9 +73,7 @@ export class ExpensesInformationsComponent implements OnInit {
   }
   
   UpdateTotal(params:ExpensesInformation){
-    const varExpensesInformatons = new ExpensesInformation();
-    varExpensesInformatons.SetValue(params);
-    this.total_expenses = varExpensesInformatons.GetTotal();
+    this.total_expenses = params.GetTotal();
   }
 
 }
