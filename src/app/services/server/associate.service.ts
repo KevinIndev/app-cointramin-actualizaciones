@@ -33,6 +33,10 @@ export class AssociateService {
     return this._http.put(`${this.url}/list/${params_id}`, params_data, {headers: this.headers});
   }
 
+  public AddContributions(params:any):Observable<any>{
+    return this._http.post(`${this.url}/contributions/add`, params, {headers: this.headers});
+  }
+
   getDocumentExport(associate_id:string, optionsExport:any):Observable<ArrayBuffer>{
     const myDate = new Date();
     const options = {
@@ -43,6 +47,6 @@ export class AssociateService {
     optionsExport.updateTime = `${myDate.getHours()}:${myDate.getMinutes()}:${myDate.getSeconds()}`;
     const params = JSON.stringify(optionsExport);
     
-    return this._http.post<any>(this.url + 'associates/generate-document/' + associate_id, params, options);
+    return this._http.post<any>(this.url + '/generate-document/' + associate_id, params, options);
   }
 }

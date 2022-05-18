@@ -1,7 +1,7 @@
-
+<p-toast></p-toast>
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-7">
             <div class="card border-0 shadow">
                 <div class="card-body" *ngIf="associate">
                     <!--DISEÑO DEL PERFIL BASICO-->
@@ -34,6 +34,30 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-5">
+            <div class="card indev-bg-success border-0 shadow">
+                <div class="card-body">
+                    <h5>Exportar informacion</h5>
+                    <form #frmExport="ngForm" (ngSubmit)="OnSubmit(frmExport)">
+                        <div class="form-row">
+                            <div class="col-6 indev-input">
+                                <p-dropdown [options]="types_requets" [styleClass]="'indev-p-dropdown'" name="inputTypeSolicitud"  [required]="true" optionLabel="request" #type_solicitud="ngModel" [(ngModel)]="optionsExport.typeFormat" 
+                                    optionValue="request" placeholder="SELECCIONAR..." [required]="true"></p-dropdown>
+                            </div>
+                            <div class="col-6 indev-input">
+                                <p-dropdown [options]="types_locations" [styleClass]="'indev-p-dropdown'" name="inputTypeSolicitud"  [required]="true" optionLabel="location" #type_solicitud="ngModel" [(ngModel)]="optionsExport.location" 
+                                    optionValue="location" placeholder="SELECCIONAR..." [required]="true"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="from-row">
+                            <div class="col">
+                                <input type="submit" class="btn btn-warning" value="Exportar">
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

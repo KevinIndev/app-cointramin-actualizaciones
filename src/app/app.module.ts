@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import {HttpClientModule} from'@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from'@angular/common/http';
 import {FormsModule} from '@angular/forms';
 
 //MODULES PRIMENG
@@ -40,6 +40,8 @@ import { IncomesInformationsComponent } from './components/associate/information
 import { ExpensesInformationsComponent } from './components/associate/informations/financial-informations/expenses-informations/expenses-informations.component';
 import { AssetsInformationComponent } from './components/associate/informations/financial-informations/assets-information/assets-information.component';
 import { PassivesInformationsComponent } from './components/associate/informations/financial-informations/passives-informations/passives-informations.component';
+import { SpinnerLoaderComponent } from './components/spinner-loader/spinner-loader.component';
+import { SpinnerInterceptor } from './interceptor/spinner.interceptor';
 
 
 
@@ -67,6 +69,7 @@ import { PassivesInformationsComponent } from './components/associate/informatio
     ExpensesInformationsComponent,
     AssetsInformationComponent,
     PassivesInformationsComponent,
+    SpinnerLoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +93,7 @@ import { PassivesInformationsComponent } from './components/associate/informatio
     InputNumberModule,
     InputTextareaModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass:SpinnerInterceptor, multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

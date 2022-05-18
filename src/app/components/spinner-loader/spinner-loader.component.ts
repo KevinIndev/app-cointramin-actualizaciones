@@ -8,9 +8,11 @@ import { SpinnerService } from 'src/app/services/spinner.service';
   providers: [SpinnerService]
 })
 export class SpinnerLoaderComponent implements OnInit {
-  constructor(private _spinner_service: SpinnerService) { }
+  lo = this._spinner_service.isLoading;
+  constructor(public _spinner_service: SpinnerService) { }
 
   ngOnInit(): void {
+    
   }
 
 }

@@ -17,6 +17,26 @@ export class DetailsAssociateComponent implements OnInit {
   associate: Associate | undefined;
   birth_date: Date | undefined;
 
+  public optionsExport = {
+    typeFormat: '',
+    location: ''
+  };
+
+  public types_requets = [
+    {request: 'SOLICITUD DE INGRESO'},
+    {request: 'ACTUALIZACION DE DATOS'}
+  ]
+
+  public types_locations = [
+    {location: 'VALLEDUPAR'},
+    {location: 'LA LOMA'}
+  ]
+  public contributions = {
+    associate_id: this.associate_id,
+    ordinary_contribution: 0,
+    admission_fee: 0
+  }
+
   public menu_items: MenuItem[];
   public activeItem: MenuItem;
   constructor(private _associate_service: AssociateService,
@@ -68,5 +88,50 @@ export class DetailsAssociateComponent implements OnInit {
         this._message_service.add(map_message_service(response_standars.error, 'Error en el servidor al intentar obtener el asociado. Comuniquese con soporte'));
       }
     });
+  }
+
+  OnSubmit(frm:any){
+    if(this.optionsExport.typeFormat === 'SOLICITUD DE INGRESO'){
+      this.contributions.associate_id = this.associate_id;
+      this._associate_service.AddContributions(this.contributions).subscribe({
+        next: (response) => {
+          if(response.status && response.status === response_standars.success){
+            this.ExportFormat(frm);
+          } else {
+            this._message_service.add(map_message_service(response_standars.warning, response.message));
+          }
+        },
+        error: (err) => {
+          MapErrorConsole(err);
+          this._message_service.add(map_message_service(response_standars.error, 'Error en el servidor al actualizar los aportes. Comuniquese con soporte'));
+        }
+      })
+    } else {
+      this.ExportFormat(frm);
+    }
+  }
+
+  ExportFormat(frm:any){
+    this._associate_service.getDocumentExport(this.associate_id, this.optionsExport).subscribe({
+      next: (response) => {
+        try {
+          const file = new Blob([response], { type: 'application/pdf' });
+            const fileURL = URL.createObjectURL(file);
+            const fileName = `SOLICITUD-${this.associate?.number_identity}-${new Date().getUTCMonth()}${new Date().getUTCDate()}`
+            const link = document.createElement('a');
+            link.href = fileURL;
+            link.download = fileName + ".pdf";
+            link.click();
+            frm.reset();
+            this._message_service.add(map_message_service(response_standars.success, 'Documento generado correctamente.'));
+        } catch (error) {
+          this._message_service.add(map_message_service(response_standars.warning, 'Oucrrio un problema al generar el formato.'));
+        }
+      },
+      error: (err) => {
+        MapErrorConsole(err);
+        this._message_service.add(map_message_service(response_standars.error, 'Error en el servidor al intentar exportar la informacion. Comuniquese con soporte'));
+      }
+    })
   }
 }
