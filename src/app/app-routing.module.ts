@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DetailsAssociateComponent } from './components/associate/details-associate/details-associate.component';
 import { ConyugeInformationsComponent } from './components/associate/informations/conyuge-informations/conyuge-informations.component';
+import { CurrencyOperationsComponent } from './components/associate/informations/currency-operations/currency-operations.component';
 import { DependentsInformationsComponent } from './components/associate/informations/dependents-informations/dependents-informations.component';
 import { EconomicActivityComponent } from './components/associate/informations/economic-activity/economic-activity.component';
 import { FinancialInformationsComponent } from './components/associate/informations/financial-informations/financial-informations.component';
@@ -29,6 +30,7 @@ const routes: Routes = [
       {path:'references-informations', component:ReferencesInformationsComponent},
       {path:'dependents-informations', component:DependentsInformationsComponent},
       {path:'financial-informations', component:FinancialInformationsComponent},
+      {path:'currency-operations', component:CurrencyOperationsComponent},
       {path: '', redirectTo: 'personal-informations', pathMatch: 'full'}
     ]}
   ]}
