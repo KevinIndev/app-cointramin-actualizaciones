@@ -79,4 +79,8 @@ export class UtilitiesService {
   GetTypesReference():Observable<any>{
     return this._http.get(`${this.url}typesReference/list`, {headers: this.headers});
   }
+
+  GetTypesBusiness():Observable<any>{
+    return this._http.get(`${this.url}/business/list`, {headers: this.headers});
+  }
 }

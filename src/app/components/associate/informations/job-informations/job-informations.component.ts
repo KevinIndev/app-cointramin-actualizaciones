@@ -21,6 +21,7 @@ export class JobInformationsComponent implements OnInit {
   public  list_locations:any;
   public  list_types_jobs: any;
   public  list_headquarters: any;
+  public  list_types_business:any;
   public list_types_roles:any;
 
   constructor(private _job_information_service: JobInformationsService,
@@ -82,6 +83,7 @@ export class JobInformationsComponent implements OnInit {
   }
 
   LoadUtilities(){
+    this.GetBusiness();
     this.GetListDepartments();
     this.GetTypesContract();
     this.GetTypesJobs();
@@ -183,5 +185,21 @@ export class JobInformationsComponent implements OnInit {
         this._message_service.add(map_message_service(response_standars.error, 'Error en el servidor al cargar los tipos de roles. Comuniquese con soporte'));
       }
     })
+  }
+
+  GetBusiness(){
+    this._utilities_service.GetTypesBusiness().subscribe({
+      next: (response) => {
+        if(response.status && response.status === response_standars.success){
+          this.list_types_business = response.data;
+        } else {
+          this._message_service.add(map_message_service(response.status, response.message));
+        }
+      },
+      error: (err) => {
+        MapErrorConsole(err);
+        this._message_service.add(map_message_service(response_standars.error, 'Error en el servidor al cargar los tipos de empresa. Comuniquese con soporte'));
+      }
+    });
   }
 }

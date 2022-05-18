@@ -3,14 +3,15 @@
     <form #frmJobInformations ="ngForm" (ngSubmit)="OnSubmit()">
         <div class="form-row mb-3">
             <div class="col-3 indev-input">
-                <h5>TIPO DE CONTRACTO</h5>
+                <h5>TIPO DE CONTRATO</h5>
                 <p-dropdown [options]="list_types_contract" [styleClass]="'indev-p-dropdown'" name="inputTypeContract" #type_contract = "ngModel" [(ngModel)] = "job_information.type_contract"
                     optionLabel="concept" optionValue="code" [disabled]="!list_types_contract" placeholder="SELECCIONAR..." [required]="true"></p-dropdown>
                 <small *ngIf="type_contract.invalid || (type_contract.invalid && type_contract.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
             </div>
             <div class="col-3 indev-input">
                 <h5>NOMBRE / RAZON SOCIAL</h5>
-                <input type="text" pInputText name="inputBusinessNames" #business_name="ngModel" [(ngModel)]="job_information.business_name" required>
+                <p-dropdown [options]="list_types_business" [styleClass]="'indev-p-dropdown'" name="inputBusinessNames" #business_name="ngModel" [(ngModel)]="job_information.business_name"
+                    optionLabel="concept" optionValue="code" [disabled]="!list_types_business" [required]="true"></p-dropdown>
                 <small *ngIf="business_name.invalid || (business_name.invalid && business_name.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
             </div>
             <div class="col-3 indev-input">

@@ -28,7 +28,7 @@
             <div class="col-3 indev-input">
                 <h5>DPTO. EXPEDICIÓN</h5>
                 <p-dropdown [options]="list_departments" [styleClass]="'indev-p-dropdown'" name="inputD_ExpeditionDepartment" #d_expedition_department="ngModel" [(ngModel)]="conyuge_information.d_expedition_department"
-                    (onChange)="GetLocations(conyuge_information.d_expedition_department, 'expedition_locations')" optionLabel="name" optionValue="code" [disabled]="!list_departments" [required]="true"></p-dropdown>
+                    (onChange)="GetLocations(conyuge_information.d_expedition_department, 'expedition_locations')" optionLabel="name" optionValue="code" placeholder="SELECCIONAR..." [disabled]="!list_departments" [required]="true"></p-dropdown>
                 <small *ngIf="d_expedition_department.invalid || (d_expedition_department.invalid && d_expedition_department.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
             </div>
             <div class="col-3 indev-input">
@@ -58,7 +58,7 @@
             <div class="col-3 indev-input">
                 <h5>DEPARTAMENTO</h5>
                 <p-dropdown [options]="list_departments" [styleClass]="'indev-p-dropdown'" name="inputDepartment>" #department="ngModel" [(ngModel)]="conyuge_information.department"
-                    (onChange)="GetLocations(conyuge_information.department, 'locations')" optionLabel="name" optionValue="code" [disabled]="!list_departments" [required]="true"></p-dropdown>
+                    (onChange)="GetLocations(conyuge_information.department, 'locations')" optionLabel="name" optionValue="code" placeholder="SELECCIONAR..." [disabled]="!list_departments" [required]="true"></p-dropdown>
                 <small *ngIf="department.invalid || (department.invalid && department.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
             </div>
             <div class="col-3 indev-input">
@@ -98,12 +98,12 @@
             </div>
             <div class="col-3 indev-input">
                 <h5>EMPRESA</h5>
-                <input type="text" pInputText name="inputBusinessName" #business_name="ngModel" [(ngModel)]="conyuge_information.business_name" required>
+                <input type="text" pInputText name="inputBusinessName" #business_name="ngModel" [(ngModel)]="conyuge_information.business_name">
                 <small *ngIf="business_name.invalid || (business_name.invalid && business_name.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
             </div>
             <div class="col-3 indev-input">
                 <h5>CARGO</h5>
-                <input type="text" pInputText name="inputJobRole" #job_role="ngModel" [(ngModel)]="conyuge_information.job_role" required>
+                <input type="text" pInputText name="inputJobRole" #job_role="ngModel" [(ngModel)]="conyuge_information.job_role">
                 <small *ngIf="job_role.invalid || (job_role.invalid && job_role.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
             </div>
         </div>
@@ -111,7 +111,7 @@
             <div class="col-3 indev-input">
                 <h5>T. CONTRATO</h5>
                 <p-dropdown [options]="list_types_contract" [styleClass]="'indev-p-dropdown'" name="inputTypeContract" #type_contract="ngModel" [(ngModel)]="conyuge_information.type_contract"
-                    optionLabel="concept" optionValue="code" [disabled]="!list_types_contract" [required]="true"></p-dropdown>
+                    optionLabel="concept" optionValue="code" placeholder="SELECCIONAR..." [disabled]="!list_types_contract"></p-dropdown>
                 <small *ngIf="type_contract.invalid || (type_contract.invalid && type_contract.touched)" class="text-danger"><strong>El campo no es valido.</strong></small>
             </div>
             <div class="col-auto align-self-end">

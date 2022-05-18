@@ -49,8 +49,8 @@ export class DetailsAssociateComponent implements OnInit {
       {label: 'Informacion empresa', icon: 'pi pi-fw pi-building', routerLink:['job-informations']},
       {label: 'Datos conyuge', icon: 'pi pi-fw pi-users', routerLink:['conyuge-informations']},
       {label: 'Referencias', icon: 'pi pi-fw pi-id-card', routerLink:['references-informations']},
-      {label: 'Beneficiarios', icon: 'pi pi-fw pi-cog', routerLink:['dependents-informations']},
-      {label: 'Informacion financiera', icon: 'pi pi-fw pi-cog', routerLink:['financial-informations']},
+      {label: 'Beneficiarios', icon: 'pi pi-fw pi-sitemap', routerLink:['dependents-informations']},
+      {label: 'Informacion financiera', icon: 'pi pi-fw pi-percentage', routerLink:['financial-informations']},
       {label: 'O. Moneda extranjera', icon: 'pi pi-fw pi-dollar', routerLink:['currency-operations']}
   ];
   this.activeItem = this.menu_items[2];

@@ -44,7 +44,6 @@ export class AssetsInformationComponent implements OnInit {
   }
 
   GetInformations(){
-    this.assets_information.associate_id = this.associate_id;
     this._assets_informations_service.GetInformations(this.associate_id).subscribe({
       next: (response) => {
         if(response.status && response.status === response_standars.success){
@@ -63,6 +62,7 @@ export class AssetsInformationComponent implements OnInit {
   }
 
   OnSubmit(){
+    this.assets_information.associate_id = this.associate_id;
     this._assets_informations_service.AddInformations(this.assets_information).subscribe({
       next: (response) => {
         if(response.status && response.status === response_standars.success){
