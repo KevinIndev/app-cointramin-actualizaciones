@@ -60,18 +60,12 @@
             </div>
             <div class="col-3 indev-input">
                 <h5>PAIS DE NACIMIENTO</h5>
-                <input type="text" pInputText class="p-inputtext-md" value="COLOMBIA" name="inputBirthContry" #country_birth = "ngModel" [(ngModel)] = "personal_informations.country_birth" [disabled]="true" [required]="true">     
+                <input type="text" pInputText value="COLOMBIA" name="inputBirthContry" #country_birth = "ngModel" [(ngModel)] = "personal_informations.country_birth" [disabled]="true" [required]="true">     
             </div>
             <div class="col-3 indev-input">
                 <h5>DPTO. DE NACIMIENTO</h5>
-                <p-dropdown [styleClass]="'indev-p-dropdown'"  [options]="list_departments" name="inputD_Expedition_Department" #department_birth = "ngModel" [(ngModel)] = "personal_informations.department_birth" optionValue="code" optionLabel="name" [filter]="true" filterBy="name" 
-                    (onChange)="GetLocations(personal_informations.department_birth,'locations_birth')" placeholder="SELECCIONAR..." [disabled]="!list_departments" [required]="true">
-                    <ng-template let-department pTemplate="item">
-                        <div style="width: 25px;">
-                            <p>{{department.name}}</p>
-                        </div>
-                    </ng-template>
-                </p-dropdown>
+                <p-dropdown [styleClass]="'indev-p-dropdown'"  [options]="list_departments" name="inputD_Expedition_Department" #department_birth = "ngModel" [(ngModel)] = "personal_informations.department_birth" optionValue="code" optionLabel="name" 
+                    (onChange)="GetLocations(personal_informations.department_birth,'locations_birth')" placeholder="SELECCIONAR..." [disabled]="!list_departments" [required]="true"></p-dropdown>
                 <small *ngIf = "department_birth.invalid || (department_birth.touched && department_birth.invalid)" class="text-danger"><strong>El campo no es valido.</strong></small>
             </div>
         </div>

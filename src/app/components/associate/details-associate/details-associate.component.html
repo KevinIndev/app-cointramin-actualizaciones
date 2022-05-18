@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-7">
-            <div class="card border-0 shadow">
+            <div class="card border-0 shadow-sm">
                 <div class="card-body" *ngIf="associate">
                     <!--DISEÑO DEL PERFIL BASICO-->
                     <div class="row">
@@ -14,18 +14,19 @@
                                 <div class="col-12">
                                     <h5>
                                         {{associate.names}} {{associate.surname_1}} {{associate.surname_2}}
-                                        <span class="badge badge-warning" style="font-size: 10pt;">{{associate.modelTypeStatus.concept}}</span>
                                     </h5>
                                     <small class="text-primary">
                                         <i class="pi pi-user mr-2"></i><strong>UID: {{associate.number_identity}}</strong>
-                                        <span class="text-dark ml-4"><i class="pi pi-map-marker mr-2"></i><strong>Valledupar</strong></span>
+                                        <span class="ml-2 px-2 rounded-pill" [ngClass]="{'indev-bg-success':associate.modelTypeStatus.code === 'A',
+                                        'indev-bg-warning':associate.modelTypeStatus.code === 'X',
+                                        'indev-bg-danger':associate.modelTypeStatus.code === 'R'}">
+                                            <strong>{{associate.modelTypeStatus.concept}}</strong></span>
                                     </small>
                                     <div class="description mt-3">
                                         <div class="row">
-                                            <div class="col-4">
+                                            <div class="col-12">
                                                 <span><strong>Ultima actualizacion:</strong></span>
-                                            </div>
-                                            <div class="col">
+                                                <br>
                                                 <span>{{associate.update_data?associate.update_data:'---'}} ({{associate.onUser?associate.onUser.names:'---'}})</span>
                                             </div>
                                         </div>
@@ -38,23 +39,33 @@
             </div>
         </div>
         <div class="col-5">
-            <div class="card indev-bg-success border-0 shadow">
+            <div class="card indev-bg-success border-0 shadow-sm">
                 <div class="card-body">
                     <h5>Exportar informacion</h5>
                     <form #frmExport="ngForm" (ngSubmit)="OnSubmit(frmExport)">
                         <div class="form-row">
                             <div class="col-6 indev-input">
-                                <p-dropdown [options]="types_requets" [styleClass]="'indev-p-dropdown'" name="inputTypeSolicitud"  [required]="true" optionLabel="request" #type_solicitud="ngModel" [(ngModel)]="optionsExport.typeFormat" 
-                                    optionValue="request" placeholder="SELECCIONAR..." [required]="true"></p-dropdown>
+                                <p-dropdown [options]="types_requets" [styleClass]="'indev-p-dropdown'" name="inputTypeSolicitud" optionLabel="request" #type_solicitud="ngModel" [(ngModel)]="optionsExport.typeFormat" 
+                                    optionValue="request" placeholder="TIPO SOLICITUD" [required]="true"></p-dropdown>
                             </div>
                             <div class="col-6 indev-input">
-                                <p-dropdown [options]="types_locations" [styleClass]="'indev-p-dropdown'" name="inputTypeSolicitud"  [required]="true" optionLabel="location" #type_solicitud="ngModel" [(ngModel)]="optionsExport.location" 
-                                    optionValue="location" placeholder="SELECCIONAR..." [required]="true"></p-dropdown>
+                                <p-dropdown [options]="types_locations" [styleClass]="'indev-p-dropdown'" name="inputTypeSolicitud" optionLabel="location" #type_solicitud="ngModel" [(ngModel)]="optionsExport.location" 
+                                    optionValue="location" placeholder="CIUDAD" [required]="true"></p-dropdown>
                             </div>
                         </div>
-                        <div class="from-row">
-                            <div class="col">
-                                <input type="submit" class="btn btn-warning" value="Exportar">
+                        <div class="form-row my-2 " *ngIf="optionsExport.typeFormat === 'SOLICITUD DE INGRESO'">
+                            <div class="col indev-input">
+                                <h5 style="color: #ffffff !important;">APORTES ORDINARIOS</h5>
+                                <p-inputNumber name="inputOrdinaryContribution" #ordinary_contribution="ngModel" [(ngModel)]="contributions.ordinary_contribution" [required]="true"></p-inputNumber>
+                            </div>
+                            <div class="col indev-input">
+                                <h5 style="color: #ffffff !important;">APORTES</h5>
+                                <p-inputNumber name="inputAdmissionFee" #admission_fee="ngModel" [(ngModel)]="contributions.admission_fee" [required]="true"></p-inputNumber>
+                            </div>
+                        </div>
+                        <div class="from-row mt-2">
+                            <div class="col-auto">
+                                <button pButton class="p-button-warning p-button-sm" type="submit" label="Generar formato" icon="pi pi-save" iconPos="left" [disabled]="frmExport.invalid"></button>
                             </div>
                         </div>
                     </form>
@@ -64,7 +75,7 @@
     </div>
     <div class="row mt-5">
         <div class="col">
-            <h5>Informacion del asociado</h5>
+            <h4><strong>Informacion del asociado</strong></h4>
         </div>
     </div>
     <div class="row py-3">
