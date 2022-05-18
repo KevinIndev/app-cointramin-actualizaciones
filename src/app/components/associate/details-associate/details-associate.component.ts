@@ -115,7 +115,7 @@ export class DetailsAssociateComponent implements OnInit {
     this._associate_service.getDocumentExport(this.associate_id, this.optionsExport).subscribe({
       next: (response) => {
         try {
-          const file = new Blob([response], { type: 'application/pdf' });
+          const file = new Blob([response], {type: 'application/pdf'});
             const fileURL = URL.createObjectURL(file);
             const fileName = `SOLICITUD-${this.associate?.number_identity}-${new Date().getUTCMonth()}${new Date().getUTCDate()}`
             const link = document.createElement('a');
