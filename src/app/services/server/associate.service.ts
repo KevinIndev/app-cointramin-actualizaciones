@@ -47,7 +47,7 @@ export class AssociateService {
       headers: this.headers,
       responseType: 'blob' as 'json'
     };
-    optionsExport.updateDate = `${myDate.getFullYear()}-${myDate.getMonth()}-${myDate.getUTCDate()}`;
+    optionsExport.updateDate = `${myDate.getFullYear()}-${String(myDate.getMonth()+1).padStart(2,"0")}-${String(myDate.getUTCDate()).padStart(2,"0")}`;
     optionsExport.updateTime = `${myDate.getHours()}:${myDate.getMinutes()}:${myDate.getSeconds()}`;
     const params = JSON.stringify(optionsExport);
     
