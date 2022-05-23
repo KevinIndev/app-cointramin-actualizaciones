@@ -5,15 +5,15 @@
 }
 .nav-link h5 i {
     margin-right: 5px;
+    font-size: 0.8em;
 }
 
 .nav-link h5{
     font-size: 16pt;
 }
  .active{
-    background-color: rgba(0, 121, 101,0.5);
+    background-color: rgba(100, 177, 164, 0.5);
     color: #014d40;
-    font-weight: bold;
     border-radius: 5px;  
  }
 
