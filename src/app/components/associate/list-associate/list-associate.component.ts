@@ -6,7 +6,6 @@ import { MapErrorConsole, map_message_service, response_standars } from 'src/app
 import { AssociateService } from 'src/app/services/server/associate.service';
 import { UtilitiesService } from 'src/app/services/server/utilities.service';
 
-
 @Component({
   selector: 'app-list-associate',
   templateUrl: './list-associate.component.html',

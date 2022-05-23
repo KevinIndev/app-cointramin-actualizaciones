@@ -1,8 +1,9 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import {HttpClientModule, HTTP_INTERCEPTORS} from'@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 //MODULES PRIMENG
 import {AvatarModule} from 'primeng/avatar';
@@ -40,7 +41,6 @@ import { IncomesInformationsComponent } from './components/associate/information
 import { ExpensesInformationsComponent } from './components/associate/informations/financial-informations/expenses-informations/expenses-informations.component';
 import { AssetsInformationComponent } from './components/associate/informations/financial-informations/assets-information/assets-information.component';
 import { PassivesInformationsComponent } from './components/associate/informations/financial-informations/passives-informations/passives-informations.component';
-import { SpinnerLoaderComponent } from './components/spinner-loader/spinner-loader.component';
 import { SpinnerInterceptor } from './interceptor/spinner.interceptor';
 import { CurrencyOperationsComponent } from './components/associate/informations/currency-operations/currency-operations.component';
 
@@ -70,7 +70,6 @@ import { CurrencyOperationsComponent } from './components/associate/informations
     ExpensesInformationsComponent,
     AssetsInformationComponent,
     PassivesInformationsComponent,
-    SpinnerLoaderComponent,
     CurrencyOperationsComponent
   ],
   imports: [
@@ -79,6 +78,7 @@ import { CurrencyOperationsComponent } from './components/associate/informations
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    NgxSpinnerModule,
     //modulos primeng
     AvatarModule,
     TableModule,
@@ -95,6 +95,7 @@ import { CurrencyOperationsComponent } from './components/associate/informations
     InputNumberModule,
     InputTextareaModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [{provide: HTTP_INTERCEPTORS, useClass:SpinnerInterceptor, multi:true}],
   bootstrap: [AppComponent]
 })
