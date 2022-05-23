@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
 
   public app_version = '1.0.3';
   
+  public isLoading = false;
   public response_message: [] | undefined;
   public login_params = {
     username: undefined,
@@ -29,6 +30,7 @@ export class LoginComponent implements OnInit {
   }
 
   public login(){
+    this.isLoading = true;
     this._user_service.Login(this.login_params).subscribe({
       next: (response) => {
         if(response.status && response.status === response_standars.success){
@@ -43,6 +45,9 @@ export class LoginComponent implements OnInit {
         console.log(">>ERROR EN EL SERVIODR");
         console.log(err);
         this._message_service.add(map_message_service(response_standars.error, message));
+      },
+      complete: () => {
+        this.isLoading = false;
       }
     });
   }

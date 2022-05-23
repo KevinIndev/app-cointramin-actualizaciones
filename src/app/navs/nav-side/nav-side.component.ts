@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/server/user.service';
+import { environment } from 'src/environments/environment';
 //module primeng
 
 
@@ -11,7 +12,7 @@ import { UserService } from 'src/app/services/server/user.service';
 })
 export class NavSideComponent implements OnInit {
 
-  public app_name = 'Indev Sistem';
+  public app_name = environment.APP_NAME;
   constructor(private _user_service: UserService) { }
 
   ngOnInit(): void {

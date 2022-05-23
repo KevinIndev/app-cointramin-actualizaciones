@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  SERVER_URL: 'http://localhost:3999/api/'
+  SERVER_URL: 'http://localhost:3999/api/',
+  APP_NAME: 'Indev SGE'
 };
 
 /*
