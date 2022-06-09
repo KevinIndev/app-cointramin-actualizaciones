@@ -107,7 +107,7 @@
                 <small *ngIf = "dependents.invalid || (dependents.touched && dependents.invalid)" class="text-danger"><strong>El campo no es valido.</strong></small>
             </div>
             <div class="col-3 indev-input">
-                <h5>GRUPO ETHNICO</h5>
+                <h5>GRUPO ETNICO</h5>
                 <p-dropdown [options]="list_ethnic_groups" [styleClass]="'indev-p-dropdown'" name="inputEthnicGroup" #ethnic_group = "ngModel" [(ngModel)]="personal_informations.ethnic_group" 
                     optionLabel="concept" optionValue="code" [disabled]="!list_ethnic_groups"  [required]="true"></p-dropdown> 
             </div>

@@ -18,7 +18,7 @@
                                     <small class="text-primary">
                                         <i class="pi pi-user mr-2"></i><strong>UID: {{associate.number_identity}}</strong>
                                         <span class="ml-2 px-2 rounded-pill" [ngClass]="{'indev-bg-success':associate.modelTypeStatus.code === 'A',
-                                        'indev-bg-warning':associate.modelTypeStatus.code === 'X',
+                                        'indev-bg-warning':associate.modelTypeStatus.code === 'P',
                                         'indev-bg-danger':associate.modelTypeStatus.code === 'R'}">
                                             <strong>{{associate.modelTypeStatus.concept}}</strong></span>
                                     </small>
@@ -59,7 +59,7 @@
                                 <p-inputNumber name="inputOrdinaryContribution" #ordinary_contribution="ngModel" [(ngModel)]="contributions.ordinary_contribution" [required]="true"></p-inputNumber>
                             </div>
                             <div class="col indev-input">
-                                <h5 style="color: #ffffff !important;">APORTES</h5>
+                                <h5 style="color: #ffffff !important;">C. DE ADMISION</h5>
                                 <p-inputNumber name="inputAdmissionFee" #admission_fee="ngModel" [(ngModel)]="contributions.admission_fee" [required]="true"></p-inputNumber>
                             </div>
                         </div>
