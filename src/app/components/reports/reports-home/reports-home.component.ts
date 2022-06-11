@@ -22,7 +22,7 @@ export class ReportsHomeComponent implements OnInit {
     noDownload: false,
     headers: [],
     useHeader: false,
-    nullToEmptyString: true,
+    nullToEmptyString: false,
   };
   constructor(private _utilities_service: UtilitiesService,
               private _message_service: MessageService) { }
