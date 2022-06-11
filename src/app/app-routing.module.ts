@@ -11,6 +11,7 @@ import { LocationInformationsComponent } from './components/associate/informatio
 import { PersonalInformationsComponent } from './components/associate/informations/personal-informations/personal-informations.component';
 import { ReferencesInformationsComponent } from './components/associate/informations/references-informations/references-informations.component';
 import { ListAssociateComponent } from './components/associate/list-associate/list-associate.component';
+import { ReportsHomeComponent } from './components/reports/reports-home/reports-home.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { LoginGuard } from './guards/login.guard';
 import { SessionGuard } from './guards/session.guard';
@@ -32,7 +33,8 @@ const routes: Routes = [
       {path:'financial-informations', component:FinancialInformationsComponent},
       {path:'currency-operations', component:CurrencyOperationsComponent},
       {path: '', redirectTo: 'personal-informations', pathMatch: 'full'}
-    ]}
+    ]},
+    {path:'reports', component:ReportsHomeComponent}
   ]}
 ];
 

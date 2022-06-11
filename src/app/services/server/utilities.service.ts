@@ -83,4 +83,16 @@ export class UtilitiesService {
   GetTypesBusiness():Observable<any>{
     return this._http.get(`${this.url}/business/list`, {headers: this.headers});
   }
+
+  GetSupplementsData():Observable<any>{
+    return this._http.get(`${this.url}/exportData/DatosComplementarios`, {headers: this.headers});
+  }
+
+  GetMainData():Observable<any>{
+    return this._http.get(`${this.url}/exportData/DatosPrincipales`, {headers: this.headers});
+  }
+
+  GetLocationData():Observable<any>{
+    return this._http.get(`${this.url}/exportData/DatosUbicacion`, {headers: this.headers});
+  }
 }

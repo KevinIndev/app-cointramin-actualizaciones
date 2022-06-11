@@ -43,6 +43,7 @@ import { AssetsInformationComponent } from './components/associate/informations/
 import { PassivesInformationsComponent } from './components/associate/informations/financial-informations/passives-informations/passives-informations.component';
 import { SpinnerInterceptor } from './interceptor/spinner.interceptor';
 import { CurrencyOperationsComponent } from './components/associate/informations/currency-operations/currency-operations.component';
+import { ReportsHomeComponent } from './components/reports/reports-home/reports-home.component';
 
 
 
@@ -70,7 +71,8 @@ import { CurrencyOperationsComponent } from './components/associate/informations
     ExpensesInformationsComponent,
     AssetsInformationComponent,
     PassivesInformationsComponent,
-    CurrencyOperationsComponent
+    CurrencyOperationsComponent,
+    ReportsHomeComponent
   ],
   imports: [
     BrowserModule,
