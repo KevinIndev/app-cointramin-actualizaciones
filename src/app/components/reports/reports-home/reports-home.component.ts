@@ -72,6 +72,7 @@ export class ReportsHomeComponent implements OnInit {
       }
     });
 
+    /* NO SE REQUIERE POR EL MOMENTO
     this._utilities_service.GetLocationData().subscribe({
       next: (response) => {
         if(response.status && response.status === 'SUCCESS'){
@@ -90,6 +91,6 @@ export class ReportsHomeComponent implements OnInit {
         console.log(err as any);
         this._message_service.add({severity:'error', summary:'Mensaje del sistema', detail:'Error al exportar los datos de ubicacion del sistema.'});
       }
-    });
+    });*/
   }
 }
