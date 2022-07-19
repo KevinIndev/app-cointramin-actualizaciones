@@ -85,21 +85,21 @@ export class UtilitiesService {
   }
 
   GetSupplementsData():Observable<any>{
-    return this._http.get(`${this.url}/exportData/DatosComplementarios`, {headers: this.headers});
+    return this._http.get(`${this.url}exportData/DatosComplementarios`, {headers: this.headers});
   }
 
   GetMainData():Observable<any>{
-    return this._http.get(`${this.url}/exportData/DatosPrincipales`, {headers: this.headers});
+    return this._http.get(`${this.url}exportData/DatosPrincipales`, {headers: this.headers});
   }
 
   GetLocationData(paramsDate: Date):Observable<any>{
     const params = {
       paramsDate
     }
-    return this._http.post(`${this.url}/exportData/DatosUbicacion`, params, {headers: this.headers});
+    return this._http.post(`${this.url}exportData/DatosUbicacion`, params, {headers: this.headers});
   }
 
   GetDateReport():Observable<any>{
-    return this._http.get(`${this.url}/exportData/dateReport`, {headers: this.headers});
+    return this._http.get(`${this.url}exportData/dateReport`, {headers: this.headers});
   }
 }
