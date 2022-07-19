@@ -14,7 +14,8 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <h5><strong>Archivos de Actualización</strong></h5>
+                                <h5 class="pb-2"><strong>Archivos de Actualización</strong></h5>
+                                <input type="date" name="inputDateReport" class="form-control" #inputDateReport = "ngModel" [(ngModel)]="dateReport">
                                 <a (click)="DownloadUpdateData()" class="text-dark" role="button"><h5>Descargar</h5></a>
                             </div>
                         </div>

@@ -11,6 +11,7 @@ import { MessageService } from 'primeng/api';
 })
 export class ReportsHomeComponent implements OnInit {
 
+  public dateReport!: Date;
   private configCSV = { 
     fieldSeparator: ';',
     quoteStrings: '',
@@ -25,9 +26,24 @@ export class ReportsHomeComponent implements OnInit {
     nullToEmptyString: false,
   };
   constructor(private _utilities_service: UtilitiesService,
-              private _message_service: MessageService) { }
+              private _message_service: MessageService) { 
+                this.dateReport = new Date(Date.now());
+              }
 
   ngOnInit(): void {
+    this._utilities_service.GetDateReport().subscribe({
+      next: (response: any) => {
+        if(response.status && response.status === 'SUCCESS'){
+          this.dateReport = response.dateReport.date_report as Date;
+        } else {
+          this.dateReport = new Date(Date.now());
+        }
+      },
+      error: (err:any) => {
+        console.log(err as any);
+        this._message_service.add({severity:'error', summary: 'Mensaje del sistema', detail: 'Error al obtener la fecha del ultimo reporte.'})
+      }
+    });
   }
 
   DownloadUpdateData(){
@@ -72,7 +88,7 @@ export class ReportsHomeComponent implements OnInit {
       }
     });
     
-    this._utilities_service.GetLocationData().subscribe({
+    this._utilities_service.GetLocationData(this.dateReport).subscribe({
       next: (response) => {
         if(response.status && response.status === 'SUCCESS'){
           try {

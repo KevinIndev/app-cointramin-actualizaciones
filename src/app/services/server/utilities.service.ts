@@ -92,7 +92,14 @@ export class UtilitiesService {
     return this._http.get(`${this.url}/exportData/DatosPrincipales`, {headers: this.headers});
   }
 
-  GetLocationData():Observable<any>{
-    return this._http.get(`${this.url}/exportData/DatosUbicacion`, {headers: this.headers});
+  GetLocationData(paramsDate: Date):Observable<any>{
+    const params = {
+      paramsDate
+    }
+    return this._http.post(`${this.url}/exportData/DatosUbicacion`, params, {headers: this.headers});
+  }
+
+  GetDateReport():Observable<any>{
+    return this._http.get(`${this.url}/exportData/dateReport`, {headers: this.headers});
   }
 }
