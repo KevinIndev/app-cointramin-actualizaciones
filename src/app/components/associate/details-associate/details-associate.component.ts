@@ -29,7 +29,8 @@ export class DetailsAssociateComponent implements OnInit {
 
   public types_locations = [
     {location: 'VALLEDUPAR'},
-    {location: 'LA LOMA'}
+    {location: 'LA LOMA'},
+    {location: 'SANTA MARTA'}
   ]
   public contributions = {
     associate_id: this.associate_id,
@@ -79,6 +80,7 @@ export class DetailsAssociateComponent implements OnInit {
       next: (response) => {
         if(response.status && response.status === response_standars.success){
           this.associate = response.associate;
+          this.GetContributions();
         } else{
           this._message_service.add(map_message_service(response_standars.warning, response.message));
         }
@@ -90,25 +92,32 @@ export class DetailsAssociateComponent implements OnInit {
     });
   }
 
-  OnSubmit(frm:any){
-    if(this.optionsExport.typeFormat === 'SOLICITUD DE INGRESO'){
+  GetContributions(){
+    this._associate_service.GetContributions(this.associate_id).subscribe({
+      next: (response) => {
+        if(response.status && response.status === response_standars.success){
+          this.contributions.ordinary_contribution = response.data.ordinary_contribution;
+          this.contributions.admission_fee = response.data.admission_fee;
+        }
+      },
+      error: (err) => {
+        MapErrorConsole(err);
+        this._message_service.add(map_message_service(response_standars.error, 'Error en el servidor al intentar obtener los aportes. Comuniquese con soporte'));
+      }
+    })
+  }
+
+  UpdateContributions(){
       this.contributions.associate_id = this.associate_id;
       this._associate_service.AddContributions(this.contributions).subscribe({
         next: (response) => {
-          if(response.status && response.status === response_standars.success){
-            this.ExportFormat(frm);
-          } else {
-            this._message_service.add(map_message_service(response_standars.warning, response.message));
-          }
+          this._message_service.add(map_message_service(response.status, response.message));
         },
         error: (err) => {
           MapErrorConsole(err);
           this._message_service.add(map_message_service(response_standars.error, 'Error en el servidor al actualizar los aportes. Comuniquese con soporte'));
         }
-      })
-    } else {
-      this.ExportFormat(frm);
-    }
+      });
   }
 
   ExportFormat(frm:any){

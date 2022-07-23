@@ -41,6 +41,10 @@ export class AssociateService {
     return this._http.post(`${this.url}/contributions/add`, params, {headers: this.headers});
   }
 
+  public GetContributions(params_id:string):Observable<any>{
+    return this._http.get(`${this.url}/contributions/list/${params_id}`, {headers: this.headers});
+  }
+
   getDocumentExport(associate_id:string, optionsExport:any):Observable<ArrayBuffer>{
     const myDate = new Date();
     const options = {

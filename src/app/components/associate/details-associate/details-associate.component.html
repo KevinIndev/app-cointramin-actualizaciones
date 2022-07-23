@@ -1,33 +1,71 @@
 <p-toast></p-toast>
-<div class="container">
+<!--MODAL APORTES DEL ASOCIADO-->
+<div class="modal fade" id="contributionsModal" tabindex="-1" aria-labelledby="contributionsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+            <h3>Ingresar aportes</h3>
+            <form class="mt-2" #frmContributions="ngForm" (ngSubmit)="UpdateContributions()">
+                <div class="form-row">
+                    <div class="col indev-input">
+                        <h5><strong>APORTES ORDINARIOS</strong></h5>
+                        <p-inputNumber name="inputOrdinaryContribution" #ordinary_contribution="ngModel" [(ngModel)]="contributions.ordinary_contribution" [required]="true"></p-inputNumber>
+                    </div>
+                    <div class="col indev-input">
+                        <h5><strong>C. DE ADMISION</strong></h5>
+                        <p-inputNumber name="inputAdmissionFee" #admission_fee="ngModel" [(ngModel)]="contributions.admission_fee" [required]="true"></p-inputNumber>
+                    </div>
+                </div>
+                <hr>
+                <div class="form-row mt-2">
+                    <div class="col-auto">
+                        <button pButton class="p-button-danger p-button-sm" type="button" label="Cancelar" icon="pi pi-close" iconPos="left" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="col-auto">
+                        <button pButton class="p-button-success p-button-sm" type="submit" label="Guardar cambios" icon="pi pi-save" iconPos="left" [disabled]="frmContributions.invalid"></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--FIN MODAL-->
+<div class="container" *ngIf="associate">
     <div class="row">
         <div class="col-md-7">
             <div class="card border-0 shadow-sm">
-                <div class="card-body" *ngIf="associate">
+                <div class="card-body">
                     <!--DISEÑO DEL PERFIL BASICO-->
                     <div class="row">
                         <div class="col-auto">
                             <img src="/assets/multimedia/img/user.png" alt="Imagen usuario" width="100" height="100">
                         </div>
-                        <div class="col-8">
+                        <div class="col">
                             <div class="row">
                                 <div class="col-12">
-                                    <h5>
-                                        {{associate.names}} {{associate.surname_1}} {{associate.surname_2}}
-                                    </h5>
-                                    <small class="text-primary">
-                                        <i class="pi pi-user mr-2"></i><strong>UID: {{associate.number_identity}}</strong>
-                                        <span class="ml-2 px-2 rounded-pill" [ngClass]="{'indev-bg-success':associate.modelTypeStatus.code === 'A',
-                                        'indev-bg-warning':associate.modelTypeStatus.code === 'P',
-                                        'indev-bg-danger':associate.modelTypeStatus.code === 'R'}">
-                                            <strong>{{associate.modelTypeStatus.concept}}</strong></span>
-                                    </small>
-                                    <div class="description mt-3">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <span><strong>Ultima actualizacion:</strong></span>
-                                                <br>
-                                                <span>{{associate.update_data?associate.update_data:'---'}} ({{associate.onUser?associate.onUser.names:'---'}})</span>
+                                    <div class="row">
+                                        <div class="col">
+                                            <small class="text-primary">
+                                                <i class="pi pi-user mr-2"></i><strong>UID: {{associate.number_identity}}</strong>
+                                                <span class="ml-2 px-2 rounded-pill" [ngClass]="{'indev-bg-success':associate.modelTypeStatus.code === 'A',
+                                                'indev-bg-warning':associate.modelTypeStatus.code === 'P',
+                                                'indev-bg-danger':associate.modelTypeStatus.code === 'R'}">
+                                                    <strong>{{associate.modelTypeStatus.concept}}</strong></span>
+                                            </small>
+                                            <p><strong>{{associate.names}} {{associate.surname_1}} {{associate.surname_2}}</strong></p>
+                                        </div>
+                                        <div class="col">
+                                            <span><strong>Actualizado:</strong></span>
+                                            <br>
+                                            <span>{{associate.update_data?associate.update_data:'---'}} ({{associate.onUser?associate.onUser.names:'---'}})</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="contributions">
+                                                <button pButton type="button" icon="pi pi-external-link" iconPos="right" 
+                                                    label="Aportes" class="p-button-sm p-button-warning" data-bs-toggle="modal" data-bs-target="#contributionsModal"></button>
                                             </div>
                                         </div>
                                     </div>
@@ -42,25 +80,15 @@
             <div class="card indev-bg-success border-0 shadow-sm">
                 <div class="card-body">
                     <h5>Exportar informacion</h5>
-                    <form #frmExport="ngForm" (ngSubmit)="OnSubmit(frmExport)">
+                    <form #frmExport="ngForm" (ngSubmit)="ExportFormat(frmExport)">
                         <div class="form-row">
                             <div class="col-6 indev-input">
                                 <p-dropdown [options]="types_requets" [styleClass]="'indev-p-dropdown'" name="inputTypeSolicitud" optionLabel="request" #type_solicitud="ngModel" [(ngModel)]="optionsExport.typeFormat" 
                                     optionValue="request" placeholder="TIPO SOLICITUD" [required]="true"></p-dropdown>
                             </div>
                             <div class="col-6 indev-input">
-                                <p-dropdown [options]="types_locations" [styleClass]="'indev-p-dropdown'" name="inputTypeSolicitud" optionLabel="location" #type_solicitud="ngModel" [(ngModel)]="optionsExport.location" 
+                                <p-dropdown [options]="types_locations" [styleClass]="'indev-p-dropdown'" name="inputLocation" optionLabel="location" #type_solicitud="ngModel" [(ngModel)]="optionsExport.location" 
                                     optionValue="location" placeholder="CIUDAD" [required]="true"></p-dropdown>
-                            </div>
-                        </div>
-                        <div class="form-row my-2 " *ngIf="optionsExport.typeFormat === 'SOLICITUD DE INGRESO'">
-                            <div class="col indev-input">
-                                <h5 style="color: #ffffff !important;">APORTES ORDINARIOS</h5>
-                                <p-inputNumber name="inputOrdinaryContribution" #ordinary_contribution="ngModel" [(ngModel)]="contributions.ordinary_contribution" [required]="true"></p-inputNumber>
-                            </div>
-                            <div class="col indev-input">
-                                <h5 style="color: #ffffff !important;">C. DE ADMISION</h5>
-                                <p-inputNumber name="inputAdmissionFee" #admission_fee="ngModel" [(ngModel)]="contributions.admission_fee" [required]="true"></p-inputNumber>
                             </div>
                         </div>
                         <div class="from-row mt-2">
